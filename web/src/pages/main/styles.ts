@@ -20,31 +20,29 @@ export const Header = styled.header`
     @media (max-width: 1200px) {
         width: 90%;
     }
-`;
 
-export const Footer = styled.footer`
-    position: fixed;
-    bottom: 0;
-    width: 40%;
-    margin-bottom: 10px;
-
-    @media (max-width: 1200px) {
-        width: 90%;
-    }
 `;
 
 export const BoxContent = styled.div`    
     width: 40%;
-    margin: 20px;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: space-between;
-    align-items: center;
+    margin: 30px;
 
     @media (max-width: 1200px) {
         width: 90%;
     }
+`;
+
+
+
+export const Label = styled.span`
+    font-family: arial;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
 `;
 
 export const Input = styled.input`
@@ -67,47 +65,40 @@ export const Submit = styled.button`
     border-radius: 16px;
     color: white;
     font-weight: bold;
-    font-size: 16px;    
+    font-size: 16px;
 `;
 
 export const Title = styled.h1`
     font-family: arial;
     font-size: 24px;
     font-weight: bold;
+    margin-bottom: 30px;
     text-align: center;
 `;
 
-export const BoxResult = styled.div`    
+export const BoxResult = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #EDEDED;
-    width: 40%;
-    height: 95px;
+    width: 100%;
+    height: 72px;
     border-radius: 20px;
     border: 0;
-    margin: 5px;
-
-    @media (max-width: 1200px) {
-        width: 90%;
-    }
-
+    margin-bottom: 20px;
+    margin-top: 20px;
 `;
 
-export const Description = styled.span`
+export const Key = styled.span`
     font-family: arial;
-    font-size: 14px;
-    flex: 1;
-    display: flex;
-    margin-left: 10px;
-    margin-top: 5px;
-`;
-
-export const Text = styled.span`
-    font-family: arial;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     display: flex;
-    flex: 1;    
-    margin-left: 10px;
-    margin-top: 15px;
+    flex: 1;
+    height: 100%;
+    margin-left: 20px;    
+    align-items: center;
 `;
 
 export const Badge = styled.div`
@@ -115,12 +106,15 @@ export const Badge = styled.div`
     color: white;
     font-family: arial;
     font-weight: bold;
-    align-items: center;    
+    align-items: center;
     border-radius: 16px;
     padding: 12px 16px 12px 16px;
     height: 12px;
-    background-color: ${props => props.theme.background};    
+    background-color: ${props => props.theme.background};
+    margin-right: 20px;
 `;
+
+//${props => props.theme.background}
 
 export const available = {
     background: '#1B97F8'
