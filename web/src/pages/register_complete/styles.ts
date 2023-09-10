@@ -10,8 +10,6 @@ export const Container = styled.div`
     flex-direction: column;
 `;
 
-//justify-content: center;
-
 export const Header = styled.header`
     width: 40%;
     display: flex;

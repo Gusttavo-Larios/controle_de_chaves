@@ -1,8 +1,6 @@
-import {  } from 'react';
-
 import { Container, Header, BoxContent, Label, Input, Submit } from './styles';
 
-import LogoMobile from '.../assets/logo_large.svg';
+import LogoMobile from 'app/assets/logo_large.svg';
 
 function Login(){
     return(
