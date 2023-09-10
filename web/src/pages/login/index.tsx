@@ -24,7 +24,6 @@ function Login() {
           </Form.Group>
         </Form.Groups>
 
-        {/* <Submit>Realizar Login</Submit> */}
         <Button type="submit" style={{ marginTop: "4rem" }}>
           Realizar Login
         </Button>
