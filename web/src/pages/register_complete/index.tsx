@@ -1,9 +1,7 @@
-import {  } from 'react';
-
 import { Container, Header, BoxContent, Label, Input, Submit, Title, Description } from './styles';
 
-import Logo from './assets/logo_small.svg';
-import Close  from './assets/close.svg';
+import Logo from 'app/assets/logo_small.svg';
+import Close  from 'app/assets/close.svg';
 
 function RegisterComplete(){
     return(
