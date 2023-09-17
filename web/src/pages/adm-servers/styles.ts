@@ -25,19 +25,20 @@ export const Results = styled.div`
 `;
 
 export const ResultBox = styled.div`
-    width: 100%;
-    display: flex;
+    width: 100%; 
+    display: flex;     
     background-color: #EDEDED;
     border-radius: 20px;
-    height: 10rem;
-    margin-top: 1rem;
+    height: 16rem;
+    margin-top: 1rem;    
+    flex-direction: column;
+    align-items: center;
 `;
 
 export const ResultLabel = styled.span`
-    width: 100%;
+    width: 90%;
     display: flex;
-    margin-top: 1.5rem;
-    margin-left: 2rem;
+    margin-top: 1.5rem;    
     flex-direction: column;
 `;
 
@@ -53,6 +54,8 @@ export const KeyStatus = styled.div`
 export const Footer = styled.footer`
     position: fixed;
     bottom: 0;
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 1rem;
-    width: 90%;
+    width: 90%;    
 `;

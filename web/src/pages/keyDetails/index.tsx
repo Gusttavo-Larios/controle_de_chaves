@@ -1,11 +1,12 @@
-import {  } from 'react';
+import { Container, Header, Footer, Results, ResultBox, ResultLabel, KeyStatus } from './styles';
 
-import { Container, Header, BoxContent, Description, Submit, Title, BoxResult, Text, Badge, available, unavailable, Footer} from './styles';
-import { ThemeProvider } from 'styled-components';
-
-import Logo from './assets/logo_small.svg';
-import Close  from './assets/close.svg';
+import Logo from 'app/assets/logo_small.svg';
+import Close from 'app/assets/close.svg';
  
+import { Button } from 'app/components/Button';
+import { Label } from 'app/components/Label';
+
+
 function keyDetails(){
     return(
         <Container>
@@ -13,36 +14,45 @@ function keyDetails(){
                 <img className='Logo' src={Logo} alt=""/>
                 <img className='Close' src={Close} alt=""/>
             </Header>
-            <BoxContent>
-                <Title>
-                    Chave #SL001
-                </Title>
-                <ThemeProvider theme={available}>
-                    <Badge>Disponível</Badge>
-                </ThemeProvider>
-            </BoxContent>
-
-            <BoxResult>
-                <Text>Cléber Feitosa</Text>
-                <Description>Retirada: 06/09/2023 ás 19:00</Description>
-                <Description>Devolução: 06/09/2023 ás 22:30</Description>
-            </BoxResult>
-            <BoxResult>
-                <Text>Cléber Feitosa</Text>
-                <Description>Retirada: 06/09/2023 ás 19:00</Description>
-                <Description>Devolução: 06/09/2023 ás 22:30</Description>
-            </BoxResult>
-            <BoxResult>
-                <Text>Cléber Feitosa</Text>
-                <Description>Retirada: 06/09/2023 ás 19:00</Description>
-                <Description>Devolução: 06/09/2023 ás 22:30</Description>
-            </BoxResult>
             
+            <KeyStatus>
+                <Label style={{ fontSize: '24px' }}>Chave #SL001</Label>
+                <Button type="submit">
+                    Disponível
+                </Button>
+            </KeyStatus>
+
+            <Results>
+                <Label style={{ textAlign: 'right', fontSize: '22px' }}>Chaves encontradas</Label>
+                <ResultBox>
+                    <ResultLabel>
+                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
+                        <Label style={{ fontSize: '16px'}}>Retirada: 06/09/2023 ás 19:00</Label>
+                        <Label style={{ fontSize: '16px'}}>Devolução: 06/09/2023 ás 22:30</Label>                        
+                    </ResultLabel>
+                </ResultBox>
+                <ResultBox>
+                    <ResultLabel>
+                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
+                        <Label style={{ fontSize: '16px'}}>Retirada: 05/09/2023 ás 19:00</Label>
+                        <Label style={{ fontSize: '16px'}}>Devolução: 06/09/2023 ás 22:30</Label>                        
+                    </ResultLabel>
+                </ResultBox>
+                <ResultBox>
+                    <ResultLabel>
+                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
+                        <Label style={{ fontSize: '16px'}}>Retirada: 06/09/2023 ás 19:00</Label>
+                        <Label style={{ fontSize: '16px'}}>Devolução: 06/09/2023 ás 22:30</Label>                        
+                    </ResultLabel>
+                </ResultBox>
+            </Results>
+
             <Footer>
-                <Submit>
+                <Button type="submit" style={{ width: '100%' }}>
                     Retirar chave
-                </Submit>
+                </Button>
             </Footer>
+
         </Container>
     );
 }

@@ -19,26 +19,15 @@ export const Header = styled.header`
     align-items: center;
 `;
 
-export const Results = styled.div`
-    width: 90%;
-    margin-top: 3rem;    
-`;
-
-export const ResultBox = styled.div`
-    width: 100%;
-    display: flex;
-    background-color: #EDEDED;
-    border-radius: 20px;
-    height: 10rem;
+export const Area = styled.div`
     margin-top: 1rem;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 `;
 
-export const ResultLabel = styled.span`
-    width: 100%;
-    display: flex;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;    
+export const BoxImg = styled.div`
+    
 `;

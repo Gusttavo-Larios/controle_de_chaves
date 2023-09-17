@@ -9,7 +9,7 @@ export const BaseStyledButton = styled.button<BaseStyledButtonProps>`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  flex-shrink: 0;
+  flex-shrink: 0;  
 
   /* STYLE */
   border-radius: 1.6rem;

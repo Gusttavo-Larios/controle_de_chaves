@@ -12,15 +12,15 @@ function Login() {
       <Header>
         <img className="LogoMobile" src={LogoMobile} alt="" />
       </Header>
-      <Form>
+      <Form style={{ width: '90%'}}>
         <Form.Groups>
-          <Form.Group>
+          <Form.Group style={{ width: '100%'}}>
             <Label>E-mail</Label>
-            <Input type="email" placeholder="ex: nome.sobrenome@ifmt.edu.br" />
+            <Input type="email" placeholder="ex: nome.sobrenome@ifmt.edu.br" style={{ width: '100%'}}/>
           </Form.Group>
-          <Form.Group>
+          <Form.Group style={{ width: '100%'}}>
             <Label>Senha</Label>
-            <Input type="password" placeholder="******" />
+            <Input type="password" placeholder="******" style={{ width: '100%'}}/>
           </Form.Group>
         </Form.Groups>
 
