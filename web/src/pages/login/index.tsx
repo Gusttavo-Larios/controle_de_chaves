@@ -1,9 +1,11 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { loginFormRules, TLoginForm } from "./form_validator.user";
 
 import { LoginUseCaseImpl } from "app/application/use_case_impl/use_case_impl.login";
+
+import {useLogin} from "./hook.login"
 
 import { Container, Header } from "./styles";
 
@@ -16,6 +18,8 @@ import { Button } from "app/components/Button";
 
 
 function Login() {
+const {onSubmit} = useLogin()
+
   const {
     register,
     handleSubmit,
@@ -24,12 +28,6 @@ function Login() {
   } = useForm<TLoginForm>({
     resolver: zodResolver(loginFormRules),
   });
-
-  const loginUseCaseImpl = new LoginUseCaseImpl()
-
-  function onSubmit(data: SubmitHandler<TLoginForm>): void {
-   loginUseCaseImpl.authenticate(data)
-  }
 
   return (
     <Container>
