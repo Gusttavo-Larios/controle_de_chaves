@@ -1,8 +1,14 @@
+import React from "react";
+import {UseFormRegister} from 'react-hook-form'
+
 import { InputProps } from "./interface";
 import { BaseStyledInput } from "./styled";
 
-function Input(props: InputProps): JSX.Element {
-  return <BaseStyledInput {...props} />;
-}
+const Input = React.forwardRef<
+  HTMLInputElement,
+  ReturnType<UseFormRegister<InputProps>>
+>((props, ref) => (
+  <BaseStyledInput {...props} ref={ref} />
+))
 
 export { Input };

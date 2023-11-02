@@ -8,7 +8,7 @@ import MainAdm from "app/pages/main-adm";
 import MainAdmServers from "app/pages/adm-servers";
 import MainAdmKeys from "app/pages/adm-key";
 
-export default createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Login/>,
@@ -38,3 +38,7 @@ export default createBrowserRouter([
     element: <MainAdmKeys/>,
   },
 ]);
+
+export {
+  router
+}
