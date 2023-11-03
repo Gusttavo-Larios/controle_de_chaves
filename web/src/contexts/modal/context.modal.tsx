@@ -12,7 +12,7 @@ type TData = {
   };
 }
 type TContextValue = {
-  openAlert: (new_context: TData["data"]) => void;
+  openAlert: (newContext: TData["data"]) => void;
   closeAlert: () => void;
 };
 
@@ -35,9 +35,9 @@ const INITIAL_STATE = {
 export function AlertContextProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState(INITIAL_STATE);
 
-  function openAlert(new_context: TData["data"]): void {
-    console.log(new_context)
-    setData(new_context)
+  function openAlert(newContext: TData["data"]): void {
+    console.log(newContext)
+    setData(newContext)
   };
 
   function closeAlert(): void {

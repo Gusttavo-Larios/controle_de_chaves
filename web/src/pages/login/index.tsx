@@ -5,7 +5,7 @@ import { loginFormRules, TLoginForm } from "./form_validator.user";
 
 import { LoginUseCaseImpl } from "app/application/use_case_impl/use_case_impl.login";
 
-import {useLogin} from "./hook.login"
+import { useLogin } from "./hook.login"
 
 import { Container, Header } from "./styles";
 
@@ -16,9 +16,8 @@ import { Form } from "app/components/FormGroup";
 import { Input } from "app/components/Input";
 import { Button } from "app/components/Button";
 
-
 function Login() {
-const {onSubmit} = useLogin()
+  const { onSubmit } = useLogin()
 
   const {
     register,

@@ -2,6 +2,6 @@ export type AdministratorEntity = {
     id: number;
     name: string;
     email: string;
-    identification_number: number;
+    identificationNumber: number;
     password: string;
 }

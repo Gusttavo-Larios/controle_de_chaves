@@ -3,7 +3,7 @@ import { ModalProps } from "./interface";
 import { BaseStyledBackdrop, BaseStyledModal } from "./styled";
 
 export function Modal(props: ModalProps): JSX.Element {
-    return <BaseStyledBackdrop is_visible={props.is_visible}>
+    return <BaseStyledBackdrop isVisible={props.isVisible}>
         <BaseStyledModal>
             {props.children}
         </BaseStyledModal>

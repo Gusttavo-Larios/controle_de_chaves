@@ -11,7 +11,7 @@ export const BaseStyledBackdrop = styled.div<TModalVariant>`
     background-color: rgb(38, 33, 31, 0.8);
     z-index: 10;
 
-    display: ${props => props.is_visible ? "flex" : "none"};
+    display: ${props => props.isVisible ? "flex" : "none"};
     align-items: center;
     justify-content: center;
 `;

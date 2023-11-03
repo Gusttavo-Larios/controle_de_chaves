@@ -13,7 +13,7 @@ export function useMain() {
   const consultKeysUseCaseImpl = new ConsultKeysUseCaseImpl();
 
   function onSubmit(data: SubmitHandler<TMainForm>): void {
-    consultKeysUseCaseImpl.consult(data.room_name).then((response) => {
+    consultKeysUseCaseImpl.consult(data.roomName).then((response) => {
       setKeyList(response);
     });
   }

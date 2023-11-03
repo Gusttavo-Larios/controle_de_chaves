@@ -10,9 +10,9 @@ import { Button } from "../Button";
 export function Alert() {
     const { data, closeAlert } = useContext(AlertContext)
 
-    const is_visible = data.title !== ""
+    const isVisible = data.title !== ""
 
-    return <Modal is_visible={is_visible}>
+    return <Modal isVisible={isVisible}>
         <Title.H2>
             {data.title}
         </Title.H2>

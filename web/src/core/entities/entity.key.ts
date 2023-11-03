@@ -1,5 +1,5 @@
 export type KeyEntity = {
     id: number;
-    room_name: string;
+    roomName: string;
     status: "Disponível" | "Indisponível"
 }

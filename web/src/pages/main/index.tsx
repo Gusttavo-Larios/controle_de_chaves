@@ -54,7 +54,7 @@ function main() {
               type="text"
               placeholder="Ex: SL001"
               style={{ width: "100%" }}
-              {...register("room_name")}
+              {...register("roomName")}
             />
           </Form.Group>
         </Form.Groups>
@@ -71,7 +71,7 @@ function main() {
         {keyList.map((item) => (
           <ResultBox key={item.id}>
             <ResultLabel>
-              <Label style={{ fontSize: "20px" }}>{item.room_name}</Label>
+              <Label style={{ fontSize: "20px" }}>{item.roomName}</Label>
               <Button
                 type="button"
                 variant={
