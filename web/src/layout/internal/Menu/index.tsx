@@ -20,7 +20,7 @@ export function Menu(): JSX.Element {
             <Button type="button" style={{
                 fontSize: "2.2rem",
                 marginTop: "2rem"
-            }} >
+            }} variant="RED_100">
                 Sair
             </Button>
         </BaseStyledMenuContainer>
