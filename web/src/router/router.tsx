@@ -14,27 +14,27 @@ const router = createBrowserRouter([
     element: <Login/>,
   },
   {
-    path: "/register-complete",
+    path: "/completar-cadastro",
     element: <RegisterComplete/>,
   },
   {
-    path: "/main",
+    path: "/chaves",
     element: <Main/>,
   },
   {
-    path: "/key-details",
+    path: "/chaves/:id",
     element: <KeyDetails/>,
   },
   {
-    path: "/main-adm",
+    path: "/administrativo",
     element: <MainAdm/>,
   },
   {
-    path: "main-adm-servers",
+    path: "/administrativo/servidores",
     element: <MainAdmServers/>,
   },
   {
-    path: "main-adm-keys",
+    path: "/administrativo/chaves",
     element: <MainAdmKeys/>,
   },
 ]);
