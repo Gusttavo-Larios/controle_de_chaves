@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { loginFormRules, TLoginForm } from "./form_validator.user";
+import { loginFormRules, IAuthenticateForm } from "./form_validator";
 
 import { LoginUseCaseImpl } from "app/application/use_case_impl/use_case_impl.login";
 
-import { useLogin } from "./hook.login"
+import { useLogin } from "./hook"
 
 import { Container, Header } from "./styles";
 
@@ -24,7 +24,7 @@ function Login() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TLoginForm>({
+  } = useForm<IAuthenticateForm>({
     resolver: zodResolver(loginFormRules),
   });
 

@@ -1,9 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { mainFormRules, TMainForm } from "./form_validator.main";
+import { mainFormRules, IConsultKeysForm } from "./form_validator";
 
-import { useMain } from "./hook.main";
+import { useMain } from "./hook";
 
 import { Results, ResultBox, ResultLabel } from "./styles";
 
@@ -26,7 +26,7 @@ function main() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TMainForm>({
+  } = useForm<IConsultKeysForm>({
     resolver: zodResolver(mainFormRules),
   });
 

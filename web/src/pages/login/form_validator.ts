@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import {EMAIL_REGEX} from 'app/utils/util.regex'
 
-const loginFormRules = z.object({
+export const loginFormRules = z.object({
   email: z
     .string()
     .nonempty("O E-Mail é requirido.")
@@ -10,9 +10,4 @@ const loginFormRules = z.object({
   password: z.string().nonempty("A senha é requirida."),
 });
 
-type TLoginForm = z.infer<typeof loginFormRules>
-
-export {
-    loginFormRules,
-    TLoginForm
-}
+export type IAuthenticateForm = z.infer<typeof loginFormRules>

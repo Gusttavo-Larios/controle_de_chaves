@@ -1,18 +1,19 @@
 import { useState } from "react";
+import { SubmitHandler } from "react-hook-form";
 
 import {
   ConsultKeysUseCaseImpl,
   keys,
 } from "app/application/use_case_impl/use_case_impl.consult_key";
 
-import { mainFormRules, TMainForm } from "./form_validator.main";
+import { IConsultKeysForm } from "./form_validator";
 
 export function useMain() {
   const [keyList, setKeyList] = useState(keys);
 
   const consultKeysUseCaseImpl = new ConsultKeysUseCaseImpl();
 
-  function onSubmit(data: SubmitHandler<TMainForm>): void {
+  const onSubmit: SubmitHandler<IConsultKeysForm> = (data): void => {
     consultKeysUseCaseImpl.consult(data.roomName).then((response) => {
       setKeyList(response);
     });

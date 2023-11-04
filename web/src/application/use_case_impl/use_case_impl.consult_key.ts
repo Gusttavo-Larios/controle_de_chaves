@@ -25,7 +25,7 @@ export const keys: KeyEntity[] = [
 ];
 
 export class ConsultKeysUseCaseImpl implements ConsultKeysUseCase {
-  async consult(roomName: string): KeyEntity[] | [] {
+  async consult(roomName: string): Promise<Array<KeyEntity> | []> {
     return keys.filter(item => item.roomName.includes(roomName))
   }
 }
