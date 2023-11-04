@@ -1,33 +1,23 @@
+import { Button } from 'app/components/Button';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  padding-top: 5.6rem;
-  display: flex;
-  flex: 1;
-  align-items: center;
-  flex-direction: column;  
-`;
-
-export const Header = styled.header`
-    position: fixed;
-    top: 0;
-    margin-top: 1rem;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-`;
-
 export const Area = styled.div`
+    width: 100%;
     margin-top: 1rem;
-    width: 90%;
+
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 1.6rem;
 `;
 
-export const BoxImg = styled.div`
-    
+export const BaseStyledAdministrationOption = styled(Button)`
+    width: 50%;
+    min-height: 14rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
 `;
