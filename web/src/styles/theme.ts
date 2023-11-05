@@ -21,51 +21,59 @@ export const theme = {
       color: "#26211F"
     },
     H2: {
-        fontFamily: "'Roboto', sans-serif",
-        fontSize: "2rem",
-        fontStyle: "normal",
-        fontWeight: 500,
-        lineHeight: "normal",
-        color: "#26211F"
-      },
-      LABEL: {
-        fontFamily: "'Roboto', sans-serif",
-        fontSize: "1.4rem",
-        fontStyle: "normal",
-        fontWeight: 500,
-        lineHeight: "normal",
-        color: "#26211F"
-      },
-      PLACEHOLDER: {
-        fontFamily: "'Inter', sans-serif",
-        fontSize: "1.4rem",
-        fontStyle: "normal",
-        fontWeight: 300,
-        lineHeight: "normal",
-        color: "#73716F"
-      },
-      TEXT_SMALL: {
-        fontFamily: "'Inter', sans-serif",
-        fontSize: "1.4rem",
-        fontStyle: "normal",
-        fontWeight: 400,
-        lineHeight: "normal",
-        color: "#26211F"
-      },
-      TEXT_MEDIUM: {
-        fontFamily: "'Inter', sans-serif",
-        fontSize: "1.6rem",
-        fontStyle: "normal",
-        fontWeight: 400,
-        lineHeight: "normal",
-        color: "#26211F"
-      },
-      BUTTON_TEXT: {
-        fontFamily: "'Roboto', sans-serif",
-        fontSize: "1.6rem",
-        fontStyle: "normal",
-        fontWeight: 500,
-        lineHeight: "normal"
-      },
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "2rem",
+      fontStyle: "normal",
+      fontWeight: 500,
+      lineHeight: "normal",
+      color: "#26211F"
+    },
+    LABEL: {
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1.4rem",
+      fontStyle: "normal",
+      fontWeight: 500,
+      lineHeight: "normal",
+      color: "#26211F"
+    },
+    PLACEHOLDER: {
+      fontFamily: "'Inter', sans-serif",
+      fontSize: "1.4rem",
+      fontStyle: "normal",
+      fontWeight: 300,
+      lineHeight: "normal",
+      color: "#73716F"
+    },
+    TEXT_SMALL: {
+      fontFamily: "'Inter', sans-serif",
+      fontSize: "1.4rem",
+      fontStyle: "normal",
+      fontWeight: 400,
+      lineHeight: "normal",
+      color: "#26211F"
+    },
+    TEXT_MEDIUM: {
+      fontFamily: "'Inter', sans-serif",
+      fontSize: "1.6rem",
+      fontStyle: "normal",
+      fontWeight: 400,
+      lineHeight: "normal",
+      color: "#26211F"
+    },
+    TEXT_LARGE: {
+      fontFamily: "'Inter', sans-serif",
+      fontSize: "1.8rem",
+      fontStyle: "normal",
+      fontWeight: 400,
+      lineHeight: "normal",
+      color: "#26211F"
+    },
+    BUTTON_TEXT: {
+      fontFamily: "'Roboto', sans-serif",
+      fontSize: "1.6rem",
+      fontStyle: "normal",
+      fontWeight: 500,
+      lineHeight: "normal"
+    },
   },
 };
