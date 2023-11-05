@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;  
   
   padding: 5.6rem 4rem;
-  `;
+`;
 
 export const Header = styled.header`
     width: 100%;
@@ -15,4 +15,6 @@ export const Header = styled.header`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: 4.8rem;
 `;
