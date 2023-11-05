@@ -2,6 +2,6 @@ export type PublicAgentEntity = {
     id: number;
     name: string;
     email: string;
-    identificationNumber: number;
+    identificationNumber: string;
     password: string;
 }
