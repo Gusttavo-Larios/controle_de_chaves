@@ -31,7 +31,7 @@ function main() {
   });
 
   return (
-    <Body>
+    <Body.Internal>
       <Form
         style={{ width: "90%", marginTop: "3rem" }}
         onSubmit={handleSubmit(onSubmit)}
@@ -82,7 +82,7 @@ function main() {
           </ResultBox>
         ))}
       </Results>
-    </Body>
+    </Body.Internal>
   );
 }
 

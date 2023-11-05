@@ -11,7 +11,7 @@ function mainAdm() {
     const navigate = useNavigate()
 
     return (
-        <Body title='Administrativo'>
+        <Body.Internal title='Administrativo'>
             <Area>
                 <BaseStyledAdministrationOption type="button" onClick={() => navigate("/administrativo/servidores")} >
                     <img src={User} alt="Imagem do contorno de uma pessoa" />
@@ -22,7 +22,7 @@ function mainAdm() {
                     Chaves
                 </BaseStyledAdministrationOption>
             </Area>
-        </Body>
+        </Body.Internal>
     );
 }
 
