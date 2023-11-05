@@ -1,41 +1,59 @@
-import { Container, Header } from './styles';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import Logo from 'app/assets/logo_small.svg';
-import Close  from 'app/assets/close.svg';
+import { useRegisterComplete } from "./hook"
+import { registerCompleteFormRules, IRegisterCompleteForm } from "./form_validator"
+
+import { Body } from "app/layout/internal/Body"
 
 import { Form } from 'app/components/FormGroup';
+import { Title } from 'app/components/Title';
+import { Text } from 'app/components/Text';
 import { Button } from 'app/components/Button';
 import { Label } from 'app/components/Label';
 import { Input } from 'app/components/Input';
 
-function RegisterComplete(){
-    return(
-        <Container>
-            <Header>
-                <img className='Logo' src={Logo} alt=""/>
-                <img className='Close' src={Close} alt=""/>
-            </Header>
-            <Form  style={{ width: '90%', marginTop: '3rem'}}>
-                <Label style={{ fontSize: '24px', marginTop: '2rem'}}>Completar Cadastro</Label>
-                <Label style={{ fontSize: '14px', marginTop: '1rem', marginBottom: '2rem'}}>
-                    Para completar o cadastro é preciso que você crie uma nova senha de acesso.
-                </Label>  
+import { Container, Header } from './styles';
 
-                <Form.Groups>
-                    <Form.Group style={{ width: '100%'}}>
+import Logo from 'app/assets/logo_small.svg';
+import Close from 'app/assets/close.svg';
+
+function RegisterComplete() {
+    const {onSubmit} = useRegisterComplete()
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<IRegisterCompleteForm>({
+        resolver: zodResolver(registerCompleteFormRules),
+    })
+
+    return (
+        <Body.External>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+                <Title.H1>Completar Cadastro</Title.H1>
+                <Text variant="TEXT_SMALL" style={{ marginTop: '1rem' }}>
+                    Para completar o cadastro é preciso que você crie uma nova senha de acesso.
+                </Text>
+
+                <Form.Groups style={{ marginTop: "3rem", width: "100%"}}>
+                    <Form.Group style={{ width: '100%' }} >
                         <Label>Senha</Label>
-                        <Input type="password" placeholder="******" style={{ width: '100%'}}/>
+                        <Input type="password" placeholder="******" style={{ width: '100%' }} {...register("password")} />
+                        {/* {errors?.password?.message} */}
                     </Form.Group>
-                    <Form.Group style={{ width: '100%'}}>
+                    <Form.Group style={{ width: '100%' }} >
                         <Label>Confirmação de senha</Label>
-                        <Input type="password" placeholder="******" style={{ width: '100%'}}/>
+                        <Input type="password" placeholder="******" style={{ width: '100%' }} {...register("confirmationPassword")} />
                     </Form.Group>
                 </Form.Groups>
                 <Button type="submit" style={{ marginTop: "4rem" }}>
                     Completar cadastro
                 </Button>
             </Form>
-        </Container>
+        </Body.External>
     );
 }
 
