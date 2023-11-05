@@ -1,27 +1,47 @@
-import { Container, Header, Results, ResultBox, ResultLabel, Footer } from './styles';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { IConsultPublicAgentForm, publicAgentFormRules } from "./form_validator"
+
+import { usePublicAgent } from "./hook"
+
+import { Body } from 'app/layout/internal/Body';
+
+import { Form } from 'app/components/FormGroup';
+import { Button } from 'app/components/Button';
+import { Text } from 'app/components/Text';
+import { Title } from 'app/components/Title';
+import { Input } from 'app/components/Input';
+
+import { PublicAgentCard } from "./components/PublicAgentCard"
+import { ButtonAddPublicAgent } from "./components/ButtonAddPublicAgent"
+
+import { ContainerCards, Results, Footer } from './styles';
 
 import Logo from 'app/assets/logo_small.svg';
 import Menu from 'app/assets/menu.svg';
 import Plus from 'app/assets/plus.svg';
 
-import { Form } from 'app/components/FormGroup';
-import { Button } from 'app/components/Button';
-import { Label } from 'app/components/Label';
-import { Input } from 'app/components/Input';
+function mainAdmServers() {
+    const {
+        publicAgentList,
+        onSubmit
+    } = usePublicAgent()
 
-function mainAdmServers(){
-    return(
-        <Container>
-            <Header>
-                <img className='Logo' src={Logo} alt=""/>
-                <img className='Menu' src={Menu} alt=""/>
-            </Header>
-            
-            <Form  style={{ width: '90%', marginTop: '3rem'}}>
-                <Label style={{ fontSize: '22px', marginTop: '2rem', textAlign: 'center', marginBottom: '2rem'}}>Servidores</Label>
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<IConsultPublicAgentForm>({
+        resolver: zodResolver(publicAgentFormRules),
+    });
+
+    return (
+        <Body.Internal title="Servidores">
+            <Form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
                 <Form.Groups>
-                    <Form.Group style={{ width: '100%'}}>
-                        <Input type="text" placeholder="Ex: 10023 ou nome.sobrenome@ifmt.edu.br" style={{ width: '100%'}}/>
+                    <Form.Group style={{ width: '100%' }}>
+                        <Input type="text" placeholder="Ex: Nome" style={{ width: '100%' }} {...register("name")} />
                     </Form.Group>
                 </Form.Groups>
                 <Button type="submit" style={{ marginTop: "1rem" }}>
@@ -29,37 +49,27 @@ function mainAdmServers(){
                 </Button>
             </Form>
 
-            <Results>
-                <Label style={{ textAlign: 'right', fontSize: '20px' }}>Servidores encontrados</Label>
-                <ResultBox>
-                    <ResultLabel>
-                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
-                        <Label style={{ fontSize: '16px'}}>Identificação: 10023</Label>
-                        <Label style={{ fontSize: '16px'}}>E-mail: cleber.feitosa@ifmt.edu.br</Label>                                                
-                    </ResultLabel>                    
-                    <Button type="submit" variant="RED_100" style={{ width: "90%", alignItems: "center",
-                 marginTop: "1rem"}}>
-                        Desativar servidor
-                    </Button>
-                </ResultBox>
-                <ResultBox>
-                    <ResultLabel>
-                        <Label style={{ fontSize: '22px'}}>Daniel Domingos</Label>
-                        <Label style={{ fontSize: '16px'}}>Identificação: 10022</Label>
-                        <Label style={{ fontSize: '16px'}}>E-mail: daniel.domingos@ifmt.edu.br</Label>                        
-                    </ResultLabel>
-                    <Button type="submit" variant="RED_100" style={{ width: "90%", alignItems: "center",
-                 marginTop: "1rem"}}>
-                        Desativar servidor
-                    </Button>
-                </ResultBox>                                
-            </Results>
-            <Footer>
-                <Button type="submit" style={{ borderRadius: '28px', width: '5rem' }}>
-                    <img src={Plus} alt=""/>
-                </Button>                
-            </Footer>
-        </Container>
+            <div style={{
+                width: "100%",
+
+                marginTop: "5.6rem",
+                marginBottom: "1.4rem",
+
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between"
+            }}>
+                <Title.H2>Servidores encontrados</Title.H2>
+                <Button type="button" variant="GREEN_400">
+                    Adicionar Servidor
+                    <img src={Plus} alt="Ícone de somar." />
+                </Button>
+            </div>
+            <ContainerCards>
+                {publicAgentList.map((item) => <PublicAgentCard key={item.id} {...item} />)}
+            </ContainerCards>
+        </Body.Internal>
     );
 }
 
