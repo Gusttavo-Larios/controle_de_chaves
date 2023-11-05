@@ -24,7 +24,6 @@ function main() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<IConsultKeysForm>({
     resolver: zodResolver(mainFormRules),

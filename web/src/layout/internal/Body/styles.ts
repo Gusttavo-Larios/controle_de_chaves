@@ -7,6 +7,8 @@ export const Container = styled.div`
   flex-direction: column;  
   
   padding: 5.6rem 4rem;
+
+  position: relative;
 `;
 
 export const Header = styled.header`

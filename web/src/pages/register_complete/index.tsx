@@ -13,18 +13,12 @@ import { Button } from 'app/components/Button';
 import { Label } from 'app/components/Label';
 import { Input } from 'app/components/Input';
 
-import { Container, Header } from './styles';
-
-import Logo from 'app/assets/logo_small.svg';
-import Close from 'app/assets/close.svg';
-
 function RegisterComplete() {
     const {onSubmit} = useRegisterComplete()
 
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<IRegisterCompleteForm>({
         resolver: zodResolver(registerCompleteFormRules),

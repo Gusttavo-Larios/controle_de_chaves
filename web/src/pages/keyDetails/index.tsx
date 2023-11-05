@@ -6,7 +6,6 @@ import Close from 'app/assets/close.svg';
 import { Button } from 'app/components/Button';
 import { Label } from 'app/components/Label';
 
-
 function keyDetails(){
     return(
         <Container>
