@@ -3,7 +3,7 @@ import { PublicAgentEntity } from "app/core/entities/entity.public_agent.ts"
 import { Button } from 'app/components/Button';
 import { Text } from 'app/components/Text';
 
-import { ResultBox, ResultLabel } from './styled';
+import { ResultBox } from './styled';
 
 export function PublicAgentCard({ name, identificationNumber, email }: PublicAgentEntity): JSX.Element {
     return <ResultBox>
