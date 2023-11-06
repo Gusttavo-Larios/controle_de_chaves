@@ -61,10 +61,10 @@ function mainAdmServers() {
                 justifyContent: "space-between"
             }}>
                 <Title.H2>Servidores encontrados</Title.H2>
-                <Button type="button" variant="GREEN_400">
+                {/* <Button type="button" variant="GREEN_400">
                     Adicionar Servidor
                     <img src={Plus} alt="Ícone de somar." />
-                </Button>
+                </Button> */}
             </div>
             <ContainerCards>
                 {publicAgentList.map((item) => <PublicAgentCard key={item.id} {...item} />)}

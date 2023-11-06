@@ -24,9 +24,9 @@ function mainAdmKeys(){
                         <Input type="text" placeholder="Ex: SL001" style={{ width: '100%'}}/>
                     </Form.Group>
                 </Form.Groups>
-                <Button type="submit" style={{ marginTop: "1rem" }}>
+                {/* <Button type="submit" style={{ marginTop: "1rem" }}>
                     Buscar chave
-                </Button>
+                </Button> */}
             </Form>
 
             <Results>
