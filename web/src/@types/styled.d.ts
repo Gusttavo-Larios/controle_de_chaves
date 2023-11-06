@@ -65,6 +65,14 @@ declare module "styled-components" {
         lineHeight: string;
         color: string;
       };
+      TEXT_LARGE: {
+        fontFamily: string;
+        fontSize: string;
+        fontStyle: string;
+        fontWeight: number;
+        lineHeight: string;
+        color: string;
+      };
       BUTTON_TEXT: {
         fontFamily: string;
         fontSize: string;
