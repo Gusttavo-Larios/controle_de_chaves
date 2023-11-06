@@ -1,58 +1,56 @@
-import { Container, Header, Footer, Results, ResultBox, ResultLabel, KeyStatus } from './styles';
+import { Body } from "app/layout/internal/Body"
 
-import Logo from 'app/assets/logo_small.svg';
-import Close from 'app/assets/close.svg';
- 
+import { Title } from 'app/components/Title';
+import { Badge } from 'app/components/Badge';
 import { Button } from 'app/components/Button';
-import { Label } from 'app/components/Label';
+import { Flex } from "app/components/Flex";
 
-function keyDetails(){
-    return(
-        <Container>
-            <Header>
-                <img className='Logo' src={Logo} alt=""/>
-                <img className='Close' src={Close} alt=""/>
-            </Header>
-            
-            <KeyStatus>
-                <Label style={{ fontSize: '24px' }}>Chave #SL001</Label>
+import { HistoryItem } from "./components/HistoryItem";
+
+const list = [
+    {
+        publicAgentName: "Cléber Feitosa",
+        dateTimeWithdrawn: "01/10/2023 ás 09:00",
+        devolutionDateTime: "01/10/2023 ás 12:00"
+    },
+    {
+        publicAgentName: "Daniel Domingues",
+        dateTimeWithdrawn: "10/10/2023 ás 07:00",
+        devolutionDateTime: "11/10/2023 ás 08:40"
+    },
+]
+
+function keyDetails() {
+    return (
+        <Body.Internal>
+
+            <Flex.Row style={{
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%"
+            }}>
+                <Flex.Row style={{
+                    alignItems: "center",
+                    gap: "1.6rem"
+                }}>
+                    <Title.H1>
+                        Chave #SL001
+                    </Title.H1>
+
+                    <Badge variant="GREEN_300" style={{ borderRadius: "2.5rem" }}>
+                        Disponível
+                    </Badge>
+                </Flex.Row>
+
                 <Button type="submit">
-                    Disponível
-                </Button>
-            </KeyStatus>
-
-            <Results>
-                <Label style={{ textAlign: 'right', fontSize: '22px' }}>Chaves encontradas</Label>
-                <ResultBox>
-                    <ResultLabel>
-                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
-                        <Label style={{ fontSize: '16px'}}>Retirada: 06/09/2023 ás 19:00</Label>
-                        <Label style={{ fontSize: '16px'}}>Devolução: 06/09/2023 ás 22:30</Label>                        
-                    </ResultLabel>
-                </ResultBox>
-                <ResultBox>
-                    <ResultLabel>
-                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
-                        <Label style={{ fontSize: '16px'}}>Retirada: 05/09/2023 ás 19:00</Label>
-                        <Label style={{ fontSize: '16px'}}>Devolução: 06/09/2023 ás 22:30</Label>                        
-                    </ResultLabel>
-                </ResultBox>
-                <ResultBox>
-                    <ResultLabel>
-                        <Label style={{ fontSize: '22px'}}>Cléber Feitosa</Label>
-                        <Label style={{ fontSize: '16px'}}>Retirada: 06/09/2023 ás 19:00</Label>
-                        <Label style={{ fontSize: '16px'}}>Devolução: 06/09/2023 ás 22:30</Label>                        
-                    </ResultLabel>
-                </ResultBox>
-            </Results>
-
-            <Footer>
-                <Button type="submit" style={{ width: '100%' }}>
                     Retirar chave
                 </Button>
-            </Footer>
+            </Flex.Row>
 
-        </Container>
+            <Flex.Column style={{ width: "100%", marginTop: "2.4rem", gap: "1rem" }}>
+                {list.map(item => <HistoryItem {...item} />)}
+            </Flex.Column>
+        </Body.Internal>
     );
 }
 
