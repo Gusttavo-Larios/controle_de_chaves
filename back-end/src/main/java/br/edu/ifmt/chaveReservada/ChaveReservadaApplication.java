@@ -1,4 +1,4 @@
-package br.edu.ifmt.chaveReserva;
+package br.edu.ifmt.chaveReservada;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
