@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServerController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,38 +23,48 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/create', function () {
+
+Route::post('/server/complete-register', [ServerController::class, 'completeRegister']);
+
+// Route::group([
+//     'middleware' => 'api',
+//     'prefix' => 'auth'
+// ], function ($router) {
+
+// });
+
+// Route::post('/create', function () {
 
 
-    $user = new User;
+//     $user = new User;
 
-    /**
- * Class Server
- * 
- * @property int $id
- * @property int $role_id
- * @property string|null $email
- * @property string|null $identification_number
- * @property string|null $name
- * @property string|null $password
- * 
- * @property Role $role
- * @property Collection|Historic[] $historics
- *
- * @package App\Models
- */
+//     /**
+//  * Class Server
+//  * 
+//  * @property int $id
+//  * @property int $role_id
+//  * @property string|null $email
+//  * @property string|null $identification_number
+//  * @property string|null $name
+//  * @property string|null $password
+//  * 
+//  * @property Role $role
+//  * @property Collection|Historic[] $historics
+//  *
+//  * @package App\Models
+//  */
 
-    $user->email = 'email@ifmt.com';
-    $user->role_id = 1;
-    $user->id = 2;
-    $user->name = 'Teste 2';
-    $user->identification_number = '1001';
-    $user->password = Hash::make('12345');
-    $user->save();
+//     $user->email = 'email@ifmt.com';
+//     $user->role_id = 1;
+//     $user->id = 2;
+//     $user->name = 'Teste 2';
+//     $user->identification_number = '1001';
+//     $user->password = Hash::make('12345');
+//     $user->save();
 
-    // auth()->login($user);
+//     // auth()->login($user);
 
-    return [
-        'message' => 'ok'
-    ];
-});
+//     return [
+//         'message' => 'ok'
+//     ];
+// });
