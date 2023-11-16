@@ -23,4 +23,20 @@ class ServerController extends Controller
             ], $code);
         }
     }
+
+    public function disableRegister(Request $request) {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->disableRegister($request->user()->id);
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
 }

@@ -32,4 +32,20 @@ class ServerBusinessLogic
             'message' => 'Cadastro completo.'
         ];
     }
+
+    public function disableRegister($server_id) {
+
+        $server = Server::find(4);
+
+        if(empty($server)) {
+            throw new Error('Usuário não encontrado.', 404);
+        }
+
+        $server->server_status_id = 2;
+        $server->save();
+
+        return [
+            'message' => 'Cadastro desativado.'
+        ];
+    }
 }

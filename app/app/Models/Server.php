@@ -6,9 +6,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Collection;
-// use Illuminate\Database\Eloquent\Model;
-
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,8 +19,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $identification_number
  * @property string|null $name
  * @property string|null $password
+ * @property int $server_status_id
  * 
  * @property Role $role
+ * @property ServerStatus $server_status
  * @property Collection|Historic[] $historics
  *
  * @package App\Models
@@ -38,7 +37,8 @@ class Server extends Authenticatable implements JWTSubject
 
 	protected $casts = [
 		'id' => 'int',
-		'role_id' => 'int'
+		'role_id' => 'int',
+		'server_status_id' => 'int'
 	];
 
 	protected $hidden = [
@@ -50,7 +50,8 @@ class Server extends Authenticatable implements JWTSubject
 		'email',
 		'identification_number',
 		'name',
-		'password'
+		'password',
+		'server_status_id'
 	];
 
 	public function role()
@@ -58,10 +59,16 @@ class Server extends Authenticatable implements JWTSubject
 		return $this->belongsTo(Role::class);
 	}
 
+	public function server_status()
+	{
+		return $this->belongsTo(ServerStatus::class);
+	}
+
 	public function historics()
 	{
 		return $this->hasMany(Historic::class);
 	}
+
 
 	/**
 	 * Get the identifier that will be stored in the subject claim of the JWT.
