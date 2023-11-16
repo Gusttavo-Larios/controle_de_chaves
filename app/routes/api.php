@@ -40,6 +40,7 @@ Route::group([
 ], function ($router) {
     Route::post('/disable', [ServerController::class, 'disableKey']);
     Route::post('/use', [ServerController::class, 'useKey']);
+    Route::post('/return', [ServerController::class, 'returnKey']);
 });
 
 // Route::post('/create', function () {
