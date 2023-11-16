@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
 class Historic extends Model
 {
 	protected $table = 'historic';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [

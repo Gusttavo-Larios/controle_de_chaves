@@ -24,7 +24,8 @@ class ServerController extends Controller
         }
     }
 
-    public function disableRegister(Request $request) {
+    public function disableRegister(Request $request)
+    {
         try {
             $core = new ServerBusinessLogic();
 
@@ -40,11 +41,29 @@ class ServerController extends Controller
         }
     }
 
-    public function disableKey(Request $request) {
+    public function disableKey(Request $request)
+    {
         try {
             $core = new ServerBusinessLogic();
 
             $res = $core->disableKey($request->input('room_name'));
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
+    public function useKey(Request $request)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->useKey($request->user()->id, $request->input('room_name'));
 
             return response()->json($res);
         } catch (\Throwable $th) {

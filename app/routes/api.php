@@ -39,6 +39,7 @@ Route::group([
     'prefix' => 'key'
 ], function ($router) {
     Route::post('/disable', [ServerController::class, 'disableKey']);
+    Route::post('/use', [ServerController::class, 'useKey']);
 });
 
 // Route::post('/create', function () {
