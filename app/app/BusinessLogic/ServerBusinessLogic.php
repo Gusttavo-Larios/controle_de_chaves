@@ -83,14 +83,14 @@ class ServerBusinessLogic
             throw new Error('Chave não encontrada.', 404);
         }
 
-        if($key->key_status_id === 2) {
+        if ($key->key_status_id === 2) {
             DB::rollBack();
             throw new Error("A chave $key->room_name está indisponível.", 400);
         }
 
         $key->key_status_id = 2;
         $key->save();
-        
+
         $historic = Historic::create([
             'key_id' => $key->id,
             'returned_at' => null,
@@ -113,10 +113,10 @@ class ServerBusinessLogic
             DB::rollBack();
             throw new Error('Chave não encontrada.', 404);
         }
-        
+
         $historic = Historic::where('key_id', $key->id)->orderBy('id', 'desc')->first();
 
-        if(empty($historic)) {
+        if (empty($historic)) {
             DB::rollBack();
             throw new Error("A chave $key->room_name não está pendente de devolução.", 404);
         }
@@ -130,5 +130,10 @@ class ServerBusinessLogic
         DB::commit();
 
         return $historic;
+    }
+
+    function getHistoricByKey($key_id)
+    {
+        return Historic::where('key_id', $key_id)->orderBy('id', 'desc')->get();
     }
 }

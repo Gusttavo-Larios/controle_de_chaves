@@ -91,4 +91,21 @@ class ServerController extends Controller
             ], $code);
         }
     }
+
+    public function historicKey(Request $request, int $key_id)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->getHistoricByKey($key_id);
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
 }
