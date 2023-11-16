@@ -34,39 +34,46 @@ Route::group([
     Route::post('/disable', [ServerController::class, 'disableRegister']);
 });
 
-Route::post('/create', function () {
-
-
-    $user = new Server();
-
-    /**
- * Class Server
- * 
- * @property int $id
- * @property int $role_id
- * @property string|null $email
- * @property string|null $identification_number
- * @property string|null $name
- * @property string|null $password
- * 
- * @property Role $role
- * @property Collection|Historic[] $historics
- *
- * @package App\Models
- */
-
-    $user->email = 'email@ifmt.com';
-    $user->role_id = 1;
-    $user->id = 2;
-    $user->name = 'Teste 2';
-    $user->identification_number = '1001';
-    $user->password = Hash::make('12345');
-    $user->server_status_id = 1;
-    $user->save();
-
-    // auth()->login($user);
-
-    return [
-        'message' => 'ok'
-    ];
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'key'
+], function ($router) {
+    Route::post('/disable', [ServerController::class, 'disableKey']);
 });
+
+// Route::post('/create', function () {
+
+
+//     $user = new Server();
+
+//     /**
+//  * Class Server
+//  * 
+//  * @property int $id
+//  * @property int $role_id
+//  * @property string|null $email
+//  * @property string|null $identification_number
+//  * @property string|null $name
+//  * @property string|null $password
+//  * 
+//  * @property Role $role
+//  * @property Collection|Historic[] $historics
+//  *
+//  * @package App\Models
+//  */
+
+//     $user->email = 'email@ifmt.com';
+//     $user->role_id = 1;
+//     $user->id = 2;
+//     $user->name = 'Teste 2';
+//     $user->identification_number = '1001';
+//     $user->password = Hash::make('12345');
+//     $user->server_status_id = 1;
+//     $user->save();
+
+//     // auth()->login($user);
+
+//     return [
+//         'message' => 'ok'
+//     ];
+// });

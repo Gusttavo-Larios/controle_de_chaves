@@ -2,6 +2,7 @@
 
 namespace App\BusinessLogic;
 
+use App\Models\Key;
 use Error;
 use App\Models\Server;
 use Illuminate\Support\Facades\Hash;
@@ -46,6 +47,23 @@ class ServerBusinessLogic
 
         return [
             'message' => 'Cadastro desativado.'
+        ];
+    }
+
+    
+    public function disableKey($room_name) {
+
+        $key = Key::where('room_name', $room_name)->first();
+
+        if(empty($key)) {
+            throw new Error('Chave não encontrado.', 404);
+        }
+
+        $key->key_status_id = 2;
+        $key->save();
+
+        return [
+            'message' => 'Chave desativada.'
         ];
     }
 }

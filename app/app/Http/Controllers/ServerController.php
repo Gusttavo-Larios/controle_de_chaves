@@ -39,4 +39,20 @@ class ServerController extends Controller
             ], $code);
         }
     }
+
+    public function disableKey(Request $request) {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->disableKey($request->input('room_name'));
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
 }
