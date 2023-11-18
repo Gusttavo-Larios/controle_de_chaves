@@ -32,7 +32,6 @@ class Server extends Authenticatable implements JWTSubject
 	use Notifiable;
 
 	protected $table = 'server';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
