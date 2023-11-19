@@ -16,9 +16,9 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ServerBusinessLogic
 {
-    public function login(string $email, string $password)
+    public function login($credentials)
     {
-        $server = Server::where('email', '=', $email);
+        $server = Server::where('email', $credentials['email'])->first();
 
         if (empty($server)) {
             throw new Error('Usuário não encontrado.', 404);
@@ -31,12 +31,13 @@ class ServerBusinessLogic
             ];
         }
 
-        if (!auth()->attempt(array($email, $password))) {
-            // return response()->json(['error' => 'Unauthorized'], 401);
+        if (!auth()->attempt($credentials)) {
             throw new Error('Acesso negado.', 404);
         }
 
-        return auth()->login($server);
+        return [
+            'token' => auth()->login($server)
+        ];
     }
 
     public function completeRegister($email, $password, $confirmationPassword)
@@ -78,6 +79,10 @@ class ServerBusinessLogic
         return [
             'message' => 'Cadastro desativado.'
         ];
+    }
+
+    public function getKeys() {
+        return Key::all();
     }
 
 

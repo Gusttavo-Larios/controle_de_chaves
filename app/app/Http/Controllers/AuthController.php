@@ -27,9 +27,12 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         try {
+
+            $credentials = request(['email', 'password']);
+
             $core = new ServerBusinessLogic();
 
-            $res = $core->login($credentials['email'], $credentials['password']);
+            $res = $core->login($credentials);
 
             return response()->json($res);
         } catch (\Throwable $th) {
