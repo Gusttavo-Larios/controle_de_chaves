@@ -6,9 +6,11 @@ use App\Models\Historic;
 use App\Models\Key;
 use Error;
 use App\Models\Server;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -177,5 +179,41 @@ class ServerBusinessLogic
         $downloadContent = Storage::download($fileName);
 
         return $downloadContent;
+    }
+
+    function preRegistrationServer(UploadedFile $file, int $server_id)
+    {
+        $server = Server::find($server_id);
+
+        if ($server->role_id === 2) {
+            throw new Error('Você não tem permissão para adicionar novos servidores.', 401);
+        }
+
+        /* LER XLSX */
+        $fileName = 'profile-' . time() . '.' . $file->getClientOriginalExtension();
+        $file = $file->storeAs($fileName);
+
+        $spreadsheet = IOFactory::load("../storage/app/$fileName");
+        $data = $spreadsheet->getActiveSheet()->toArray();
+
+        DB::beginTransaction();
+        for ($i = 1; $i < count($data); $i++) {
+            $server = $data[$i];
+
+            DB::table('server')->insertOrIgnore([
+                'name' => $server[0],
+                'email' => $server[1],
+                'role_id' => 1,
+                'server_status_id' => 1,
+                'identification_number' => $server[2]
+            ]);
+        }
+        DB::commit();
+
+        Storage::delete($fileName);
+
+        return [
+            'message' => 'Pré cadastro completo.'
+        ];
     }
 }
