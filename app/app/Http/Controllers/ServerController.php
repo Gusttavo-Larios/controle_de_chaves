@@ -116,7 +116,7 @@ class ServerController extends Controller
 
             $res = $core->downloadKeyWithdrawalHistoryReport();
 
-            return $res;
+            return response()->download($res)->deleteFileAfterSend();
         } catch (\Throwable $th) {
             $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
 

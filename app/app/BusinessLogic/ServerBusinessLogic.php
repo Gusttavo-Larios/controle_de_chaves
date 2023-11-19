@@ -151,6 +151,8 @@ class ServerBusinessLogic
             ->select('server.name', 'key.room_name', 'historic.withdrawal_at', 'historic.returned_at')
             ->get();
 
+
+        // Convertendo uma collection para array
         $array = json_decode(json_encode($historics), true);
 
         $historics = $array;
@@ -160,13 +162,14 @@ class ServerBusinessLogic
 
         $activeWorksheet->fromArray(["Servidor", "Sala", "Data Hora Retirada", "Data Hora Devolução"], null, "A1");
 
-        for ($i = 0; $i < count($historics) - 1; $i++) {
+        for ($i = 0; $i < count($historics); $i++) {
             $row_index = $i + 2;
             $activeWorksheet->fromArray($historics[$i], null, "A$row_index");
         }
 
         $writer = new Xlsx($spreadsheet);
 
+        // Obtendo o contéudo do buffer referente ao spreedsheet
         ob_start();
         $writer->save('php://output');
         $content = ob_get_contents();
@@ -174,11 +177,12 @@ class ServerBusinessLogic
 
         $fileName = 'Relatório de retirada de chaves ' . time() . '.xlsx';
 
+        // Salvando o spreadsheet no storage
         Storage::put($fileName, $content);
 
-        $downloadContent = Storage::download($fileName);
+        $fileFullPath = storage_path('app/' . $fileName);
 
-        return $downloadContent;
+        return $fileFullPath;
     }
 
     function preRegistrationServer(UploadedFile $file, int $server_id)
