@@ -108,4 +108,37 @@ class ServerController extends Controller
             ], $code);
         }
     }
+
+    public function downloadKeyWithdrawalHistory()
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->downloadKeyWithdrawalHistoryReport();
+
+            return response()->download($res)->deleteFileAfterSend();
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
+    public function preRegistrationServer(Request $request) {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->preRegistrationServer($request->file('file'), $request->user()->id);
+
+            return $res;
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
 }
