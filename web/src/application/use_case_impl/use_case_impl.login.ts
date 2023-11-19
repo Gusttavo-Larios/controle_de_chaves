@@ -1,18 +1,29 @@
 import { LoginUseCase } from "app/core/use_cases/use_case.login";
+import { api } from "app/service";
 import { NavigateUtil } from "app/utils/util.navigate";
+
 
 export class LoginUseCaseImpl implements LoginUseCase {
   async authenticate(params: { email: string, password: string }): Promise<void> {
+    try {
 
-    switch (params.email) {
-      case "cadastrado@exemplo.com":
+      const response = await api.post('/login', {
+        ...params
+      });
+
+      if (response.data.status === 'INCOMPLETE_REGISTRATION') {
+        NavigateUtil.go({
+          path: "/completar-cadastro", data: {
+            email: params.email
+          }
+        });
+      } else {
         NavigateUtil.go({ path: "/chaves" });
-        break;
-      case "novo@exemplo.com":
-        NavigateUtil.go({ path: "/completar-cadastro" });
-        break;
-      default:
-        throw new Error("Usuário ou senha inválidos.");
+      }
+
+    } catch (error: any) {
+      console.error(error)
+      throw new Error(error.message);
     }
   }
 }
