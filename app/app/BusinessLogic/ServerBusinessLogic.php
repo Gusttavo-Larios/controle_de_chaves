@@ -81,8 +81,13 @@ class ServerBusinessLogic
         ];
     }
 
-    public function getKeys() {
-        return Key::all();
+    public function getKeys()
+    {
+        return DB::table('key')
+            ->join('key_status', 'key_status.id', '=', 'key.key_status_id')
+            ->select('key.*', 'key_status.status')
+            ->get()
+            ->toArray();
     }
 
 

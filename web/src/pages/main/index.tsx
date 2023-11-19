@@ -68,7 +68,7 @@ function main() {
         {keyList.map((item) => (
           <ResultBox key={item.id}>
             <ResultLabel>
-              <Label style={{ fontSize: "20px" }}>{item.roomName}</Label>
+              <Label style={{ fontSize: "20px" }}>{item.room_name}</Label>
               <Badge
                 type="button"
                 variant={
