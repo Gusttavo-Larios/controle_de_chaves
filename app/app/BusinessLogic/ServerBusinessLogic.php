@@ -16,6 +16,29 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ServerBusinessLogic
 {
+    public function login(string $email, string $password)
+    {
+        $server = Server::where('email', '=', $email);
+
+        if (empty($server)) {
+            throw new Error('Usuário não encontrado.', 404);
+        }
+
+        if (empty($server->password)) {
+            return [
+                'message' => 'Cadastro incompleto.',
+                'status' => 'INCOMPLETE_REGISTRATION'
+            ];
+        }
+
+        if (!auth()->attempt(array($email, $password))) {
+            // return response()->json(['error' => 'Unauthorized'], 401);
+            throw new Error('Acesso negado.', 404);
+        }
+
+        return auth()->login($server);
+    }
+
     public function completeRegister($email, $password, $confirmationPassword)
     {
         if ($password !== $confirmationPassword) {

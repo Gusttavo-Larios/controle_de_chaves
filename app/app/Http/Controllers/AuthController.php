@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\BusinessLogic\ServerBusinessLogic;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
@@ -26,11 +26,19 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+        try {
+            $core = new ServerBusinessLogic();
 
-        return $this->respondWithToken($token);
+            $res = $core->login($credentials['email'], $credentials['password']);
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
     }
 
     /**
