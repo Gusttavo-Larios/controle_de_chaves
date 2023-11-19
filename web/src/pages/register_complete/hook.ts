@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from 'react-router-dom'
 import { SubmitHandler } from "react-hook-form";
 
 import {
@@ -8,11 +9,15 @@ import {
 import { IRegisterCompleteForm } from "./form_validator";
 
 export function useRegisterComplete() {
+  const { state } = useLocation()
 
   const onSubmit: SubmitHandler<IRegisterCompleteForm> = async (data): Promise<void> => {
     const registerCompleteUseCaseImpl = new RegisterCompleteUseCaseImpl();
 
-    await registerCompleteUseCaseImpl.createPassword(data)
+    await registerCompleteUseCaseImpl.createPassword({
+      ...data,
+      email: state.email
+    })
   }
 
   return {
