@@ -11,7 +11,7 @@ export class RegisterCompleteUseCaseImpl implements RegisterCompleteUseCase {
         confirmationPassword: string
     }): Promise<void> {
         try {
-            const response = await api.post('/server/complete-register', {
+            await api.post('/server/complete-register', {
                 ...params
             });
 
