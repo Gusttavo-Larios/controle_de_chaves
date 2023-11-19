@@ -36,7 +36,7 @@ function RegisterComplete() {
                     <Form.Group style={{ width: '100%' }} >
                         <Label>Senha</Label>
                         <Input type="password" placeholder="******" style={{ width: '100%' }} {...register("password")} />
-                        {/* {errors?.password?.message} */}
+                        {errors?.password?.message}
                     </Form.Group>
                     <Form.Group style={{ width: '100%' }} >
                         <Label>Confirmação de senha</Label>

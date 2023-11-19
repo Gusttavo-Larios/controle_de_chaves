@@ -16,6 +16,30 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ServerBusinessLogic
 {
+    public function login($credentials)
+    {
+        $server = Server::where('email', $credentials['email'])->first();
+
+        if (empty($server)) {
+            throw new Error('Usuário não encontrado.', 404);
+        }
+
+        if (empty($server->password)) {
+            return [
+                'message' => 'Cadastro incompleto.',
+                'status' => 'INCOMPLETE_REGISTRATION'
+            ];
+        }
+
+        if (!auth()->attempt($credentials)) {
+            throw new Error('Acesso negado.', 404);
+        }
+
+        return [
+            'token' => auth()->login($server)
+        ];
+    }
+
     public function completeRegister($email, $password, $confirmationPassword)
     {
         if ($password !== $confirmationPassword) {
@@ -55,6 +79,16 @@ class ServerBusinessLogic
         return [
             'message' => 'Cadastro desativado.'
         ];
+    }
+
+    public function getKeys(string | null $room_name)
+    {
+        return DB::table('key')
+            ->join('key_status', 'key_status.id', '=', 'key.key_status_id')
+            ->where('room_name', 'like', "%$room_name%")
+            ->select('key.*', 'key_status.status')
+            ->get()
+            ->toArray();
     }
 
 

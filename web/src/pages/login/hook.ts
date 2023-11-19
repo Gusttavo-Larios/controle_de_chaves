@@ -8,6 +8,7 @@ import { AlertContext } from "app/contexts/modal/context.modal";
 
 export function useLogin() {
   const { openAlert } = useContext(AlertContext)
+  
   const loginUseCaseImpl = new LoginUseCaseImpl();
 
   const onSubmit: SubmitHandler<IAuthenticateForm> = async (data) => {
