@@ -5,7 +5,7 @@ import { api } from "app/service";
 export class ConsultKeysUseCaseImpl implements ConsultKeysUseCase {
   async consult(roomName: string): Promise<Array<KeyEntity> | []> {
     try {
-      const response = await api.get('/key');
+      const response = await api.get(`/key${roomName ? `?roomName=${roomName}` : ''}`);
 
       return response.data;
     } catch (error: any) {

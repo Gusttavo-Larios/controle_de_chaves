@@ -81,10 +81,11 @@ class ServerBusinessLogic
         ];
     }
 
-    public function getKeys()
+    public function getKeys(string | null $room_name)
     {
         return DB::table('key')
             ->join('key_status', 'key_status.id', '=', 'key.key_status_id')
+            ->where('room_name', 'like', "%$room_name%")
             ->select('key.*', 'key_status.status')
             ->get()
             ->toArray();

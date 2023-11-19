@@ -63,7 +63,7 @@ class ServerController extends Controller
         try {
             $core = new ServerBusinessLogic();
 
-            $res = $core->getKeys();
+            $res = $core->getKeys($request->query('roomName'));
 
             return response()->json($res);
         } catch (\Throwable $th) {
