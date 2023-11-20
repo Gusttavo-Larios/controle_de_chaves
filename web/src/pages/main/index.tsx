@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from 'react-router-dom'
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { mainFormRules, IConsultKeysForm } from "./form_validator";
@@ -6,9 +7,6 @@ import { mainFormRules, IConsultKeysForm } from "./form_validator";
 import { useMain } from "./hook";
 
 import { Results, ResultBox, ResultLabel } from "./styles";
-
-import Logo from "app/assets/logo_small.svg";
-import Menu from "app/assets/menu.svg";
 
 import { Body } from "app/layout/internal/Body";
 
@@ -19,6 +17,8 @@ import { Input } from "app/components/Input";
 import { Badge } from 'app/components/Badge';
 
 function main() {
+  const naviagate = useNavigate();
+
   const { keyList, onSubmit } = useMain();
 
   const {
@@ -51,7 +51,7 @@ function main() {
               type="text"
               placeholder="Ex: SL001"
               style={{ width: "100%" }}
-              {...register("roomName")}
+              {...register("room_name")}
             />
           </Form.Group>
         </Form.Groups>
@@ -66,7 +66,7 @@ function main() {
         </Label>
 
         {keyList.map((item) => (
-          <ResultBox key={item.id}>
+          <ResultBox key={item.id} onClick={() => naviagate(`/chaves/${item.id}`)}>
             <ResultLabel>
               <Label style={{ fontSize: "20px" }}>{item.room_name}</Label>
               <Badge
