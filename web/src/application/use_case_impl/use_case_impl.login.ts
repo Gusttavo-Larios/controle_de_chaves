@@ -19,6 +19,7 @@ export class LoginUseCaseImpl implements LoginUseCase {
         });
       } else {
         sessionStorage.setItem("@token", response.data.token);
+        sessionStorage.setItem("@server", JSON.stringify(response.data.server));
         NavigateUtil.go({ path: "/chaves" });
       }
 

@@ -9,7 +9,8 @@ import { HistoryItem } from "./components/HistoryItem";
 import { useKeyDetails } from "./hook";
 
 function keyDetails() {
-    const { key } = useKeyDetails()
+    const { key, enableReturnKeyButton, useKey, returnKey } = useKeyDetails()
+
     return (
         <Body.Internal>
 
@@ -31,13 +32,19 @@ function keyDetails() {
                     </Badge>
                 </Flex.Row>
 
-                <Button type="submit">
-                    Retirar chave
-                </Button>
+                {enableReturnKeyButton ?
+                    <Button type="button" onClick={returnKey}>
+                        Devolver chave
+                    </Button>
+                    :
+                    <Button type="button" disabled={key?.key_status?.status === "Indisponível"} onClick={useKey}>
+                        Retirar chave
+                    </Button>
+                }
             </Flex.Row>
 
             <Flex.Column style={{ width: "100%", marginTop: "2.4rem", gap: "1rem" }}>
-                {key?.historics?.map(item => <HistoryItem {...item} />)}
+                {key?.historics?.map(item => <HistoryItem key={item.id} {...item} />)}
             </Flex.Column>
         </Body.Internal>
     );

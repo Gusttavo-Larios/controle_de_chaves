@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Results = styled.div`
-    width: 90%;
-    margin-top: 3rem;    
-    margin-bottom: 3rem;    
-`;
-
 export const ResultBox = styled.div`
     width: 100%;
     display: flex;

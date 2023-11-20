@@ -1,5 +1,15 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { BaseStyledButtonProps } from "./interface";
+
+const buttonDisabled = css`
+  background-color: ${props => props.theme.COLORS.GRAY_300};
+
+  cursor: not-allowed;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
 
 export const BaseStyledButton = styled.button<BaseStyledButtonProps>`
   /* LAYOUT */
@@ -24,4 +34,6 @@ export const BaseStyledButton = styled.button<BaseStyledButtonProps>`
   &:hover {
     opacity: 0.8;
   }
+
+ ${props => props.disabled && buttonDisabled}
 `;

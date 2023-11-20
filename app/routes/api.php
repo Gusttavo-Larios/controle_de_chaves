@@ -30,11 +30,12 @@ Route::group([
     'middleware' => 'jwt.auth',
     'prefix' => 'key'
 ], function () {
-    Route::get('/{id}', [ServerController::class, 'getKey']);
     Route::get('/', [ServerController::class, 'getKeys']);
+    Route::get('/{id}', [ServerController::class, 'getKey']);
+    Route::post('/enable', [ServerController::class, 'enableKey']);
     Route::post('/disable', [ServerController::class, 'disableKey']);
     Route::post('/use', [ServerController::class, 'useKey']);
     Route::post('/return', [ServerController::class, 'returnKey']);
     Route::get('/historic/download', [ServerController::class, 'downloadKeyWithdrawalHistory']);
-    Route::get('/historic/{id}', [ServerController::class, 'historicKey']);
+    // Route::get('/historic/{id}', [ServerController::class, 'historicKey']);
 });
