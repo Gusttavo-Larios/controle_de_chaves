@@ -84,12 +84,20 @@ class ServerBusinessLogic
         ];
     }
 
-    public function getKeys(string | null $room_name)
+    public function getKeys(string | null $room_name, int $server_id)
     {
-        return DB::table('key')
+        $server_role = Server::find($server_id)->role;
+
+        $query = DB::table('key')
             ->join('key_status', 'key_status.id', '=', 'key.key_status_id')
-            ->where('room_name', 'like', "%$room_name%")
-            ->select('key.*', 'key_status.status')
+            ->where('room_name', 'like', "%$room_name%");
+
+        if ($server_role->role !== "Administrador") {
+            $query->where('key_status.status', '<>', 'Desativada');
+        }
+
+        return $query->select('key.*', 'key_status.status')
+            ->orderBy('room_name', 'asc')
             ->get()
             ->toArray();
     }
@@ -103,16 +111,45 @@ class ServerBusinessLogic
         return  $key;
     }
 
-    public function disableKey($room_name)
+    public function enableKey($key_id)
     {
 
-        $key = Key::where('room_name', $room_name)->first();
+        $key = Key::find($key_id);
 
         if (empty($key)) {
             throw new Error('Chave não encontrada.', 404);
         }
 
-        $key->key_status_id = 2;
+        $key->key_status;
+
+        if ($key->key_status->status === "Indisponível") {
+            throw new Error("A chave $key->room_name está em uso. Portanto, não pode ser alterada.", 400);
+        }
+
+        $key->key_status_id = 1;
+        $key->save();
+
+        return [
+            'message' => 'Chave ativada.'
+        ];
+    }
+
+    public function disableKey($key_id)
+    {
+
+        $key = Key::find($key_id);
+
+        if (empty($key)) {
+            throw new Error('Chave não encontrada.', 404);
+        }
+
+        $key->key_status;
+
+        if ($key->key_status->status === "Indisponível") {
+            throw new Error("A chave $key->room_name está em uso. Portanto, não pode ser desativada.", 400);
+        }
+
+        $key->key_status_id = 3;
         $key->save();
 
         return [
@@ -132,9 +169,11 @@ class ServerBusinessLogic
             throw new Error('Chave não encontrada.', 404);
         }
 
-        if ($key->key_status_id === 2) {
+        $key_status_value = $key->key_status->status;
+
+        if ($key_status_value !== "Disponível") {
             DB::rollBack();
-            throw new Error("A chave $key->room_name está indisponível.", 400);
+            throw new Error("A chave $key->room_name está $key_status_value. Portanto, não pode ser utilizada.", 400);
         }
 
         $key->key_status_id = 2;

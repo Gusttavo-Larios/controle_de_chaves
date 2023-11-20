@@ -7,6 +7,6 @@ export type KeyEntity = {
     historics?: Array<HistoricEntity>;
     key_status?: {
         id: number;
-        status: "Disponível" | "Indisponível";
+        status: "Disponível" | "Indisponível" | "Desativada";
     }
 }

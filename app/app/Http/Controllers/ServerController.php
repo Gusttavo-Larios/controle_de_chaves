@@ -41,12 +41,29 @@ class ServerController extends Controller
         }
     }
 
+    public function enableKey(Request $request)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->enableKey($request->input('key_id'));
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
     public function disableKey(Request $request)
     {
         try {
             $core = new ServerBusinessLogic();
 
-            $res = $core->disableKey($request->input('room_name'));
+            $res = $core->disableKey($request->input('key_id'));
 
             return response()->json($res);
         } catch (\Throwable $th) {
@@ -63,7 +80,7 @@ class ServerController extends Controller
         try {
             $core = new ServerBusinessLogic();
 
-            $res = $core->getKeys($request->query('roomName'));
+            $res = $core->getKeys($request->query('room_name'), $request->user()->id);
 
             return response()->json($res);
         } catch (\Throwable $th) {

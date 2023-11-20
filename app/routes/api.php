@@ -32,6 +32,7 @@ Route::group([
 ], function () {
     Route::get('/', [ServerController::class, 'getKeys']);
     Route::get('/{id}', [ServerController::class, 'getKey']);
+    Route::post('/enable', [ServerController::class, 'enableKey']);
     Route::post('/disable', [ServerController::class, 'disableKey']);
     Route::post('/use', [ServerController::class, 'useKey']);
     Route::post('/return', [ServerController::class, 'returnKey']);
