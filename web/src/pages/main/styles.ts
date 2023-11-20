@@ -21,5 +21,10 @@ export const ResultLabel = styled.span`
     margin-right: 2rem;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between;    
+    justify-content: space-between; 
+    cursor: pointer;
+    
+    &:hover {
+        opacity: 0.6;
+    }
 `;

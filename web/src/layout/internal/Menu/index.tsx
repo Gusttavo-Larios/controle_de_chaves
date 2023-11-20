@@ -14,6 +14,8 @@ export function Menu(): JSX.Element {
 
     const { isVisible, closeMenu } = useMenu()
 
+    const server: ServerEntity = JSON.parse(sessionStorage.getItem('@server') as string)
+
     function logout() {
         if (isVisible) closeMenu()
         navigate("/")
@@ -25,7 +27,10 @@ export function Menu(): JSX.Element {
                 <img src={CloseIcon} />
             </button>
             <MenuLink to="/chaves">Chaves</MenuLink>
-            <MenuLink to="/administrativo">Administrativo</MenuLink>
+            {
+                server.role?.role === "Administrador" &&
+                <MenuLink to="/administrativo">Administrativo</MenuLink>
+            }
             <Button type="button" style={{
                 fontSize: "2.2rem",
                 marginTop: "2rem"

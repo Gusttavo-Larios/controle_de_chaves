@@ -36,5 +36,5 @@ Route::group([
     Route::post('/use', [ServerController::class, 'useKey']);
     Route::post('/return', [ServerController::class, 'returnKey']);
     Route::get('/historic/download', [ServerController::class, 'downloadKeyWithdrawalHistory']);
-    Route::get('/historic/{id}', [ServerController::class, 'historicKey']);
+    // Route::get('/historic/{id}', [ServerController::class, 'historicKey']);
 });

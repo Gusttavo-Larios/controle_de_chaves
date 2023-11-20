@@ -35,10 +35,10 @@ class ServerBusinessLogic
             throw new Error('Acesso negado.', 404);
         }
 
+        $server->role;
+
         return [
-            'server' => [
-                'id' => $server->id
-            ],
+            'server' => $server,
             'token' => auth()->login($server)
         ];
     }
@@ -181,10 +181,10 @@ class ServerBusinessLogic
         return $historic;
     }
 
-    function getHistoricByKey($key_id)
-    {
-        return Historic::where('key_id', $key_id)->orderBy('id', 'desc')->get();
-    }
+    // function getHistoricByKey($key_id)
+    // {
+    //     return Historic::where('key_id', $key_id)->orderBy('id', 'desc')->get();
+    // }
 
     function downloadKeyWithdrawalHistoryReport()
     {
