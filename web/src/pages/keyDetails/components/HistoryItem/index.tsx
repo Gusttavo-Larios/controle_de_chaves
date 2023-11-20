@@ -1,17 +1,13 @@
 import { Text } from "app/components/Text"
 
 import { ResultBox } from "./styled";
+import { HistoricEntity } from "app/core/entities/entity.historic";
 
-type IProps = {
-    publicAgentName: string;
-    dateTimeWithdrawn: string;
-    devolutionDateTime: string;
-}
 
-export function HistoryItem(props: IProps): JSX.Element {
+export function HistoryItem(props: HistoricEntity): JSX.Element {
     return <ResultBox>
-        <Text variant="TEXT_LARGE" style={{ fontWeight: 'bold' }} >{props.publicAgentName}</Text>
-        <Text variant="TEXT_SMALL" >Retirada: {props.dateTimeWithdrawn}</Text>
-        <Text variant="TEXT_SMALL" >Devolução: {props.devolutionDateTime}</Text>
+        <Text variant="TEXT_LARGE" style={{ fontWeight: 'bold' }} >{props.server.name}</Text>
+        <Text variant="TEXT_SMALL" >Retirada: {`${props.withdrawal_at}`}</Text>
+        <Text variant="TEXT_SMALL" >Devolução: {`${props.returned_at ?? "Chave não devolvida"}`}</Text>
     </ResultBox>
 }

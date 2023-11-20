@@ -75,6 +75,23 @@ class ServerController extends Controller
         }
     }
 
+    public function getKey(Request $request, int $key_id)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->getKey($key_id);
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
     public function useKey(Request $request)
     {
         try {
