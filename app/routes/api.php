@@ -30,8 +30,8 @@ Route::group([
     'middleware' => 'jwt.auth',
     'prefix' => 'key'
 ], function () {
-    Route::get('/{id}', [ServerController::class, 'getKey']);
     Route::get('/', [ServerController::class, 'getKeys']);
+    Route::get('/{id}', [ServerController::class, 'getKey']);
     Route::post('/disable', [ServerController::class, 'disableKey']);
     Route::post('/use', [ServerController::class, 'useKey']);
     Route::post('/return', [ServerController::class, 'returnKey']);

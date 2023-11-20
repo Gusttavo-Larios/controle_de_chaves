@@ -36,6 +36,9 @@ class ServerBusinessLogic
         }
 
         return [
+            'server' => [
+                'id' => $server->id
+            ],
             'token' => auth()->login($server)
         ];
     }
@@ -117,12 +120,12 @@ class ServerBusinessLogic
         ];
     }
 
-    public function useKey($server_id, $room_name)
+    public function useKey($server_id, $key_id)
     {
 
         DB::beginTransaction();
 
-        $key = Key::where('room_name', $room_name)->first();
+        $key = Key::where('id', $key_id)->first();
 
         if (empty($key)) {
             DB::rollBack();

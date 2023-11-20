@@ -97,7 +97,7 @@ class ServerController extends Controller
         try {
             $core = new ServerBusinessLogic();
 
-            $res = $core->useKey($request->user()->id, $request->input('room_name'));
+            $res = $core->useKey($request->user()->id, $request->input('key_id'));
 
             return response()->json($res);
         } catch (\Throwable $th) {
