@@ -6,21 +6,10 @@ import { Button } from 'app/components/Button';
 import { Flex } from "app/components/Flex";
 
 import { HistoryItem } from "./components/HistoryItem";
-
-const list = [
-    {
-        publicAgentName: "Cléber Feitosa",
-        dateTimeWithdrawn: "01/10/2023 ás 09:00",
-        devolutionDateTime: "01/10/2023 ás 12:00"
-    },
-    {
-        publicAgentName: "Daniel Domingues",
-        dateTimeWithdrawn: "10/10/2023 ás 07:00",
-        devolutionDateTime: "11/10/2023 ás 08:40"
-    },
-]
+import { useKeyDetails } from "./hook";
 
 function keyDetails() {
+    const { key } = useKeyDetails()
     return (
         <Body.Internal>
 
@@ -37,8 +26,8 @@ function keyDetails() {
                         Chave #SL001
                     </Title.H1>
 
-                    <Badge variant="GREEN_300" style={{ borderRadius: "2.5rem" }}>
-                        Disponível
+                    <Badge variant={key?.key_status?.status === "Disponível" ? 'GREEN_300' : 'YELLOW_400'} style={{ borderRadius: "2.5rem" }}>
+                        {key?.key_status?.status}
                     </Badge>
                 </Flex.Row>
 
@@ -48,7 +37,7 @@ function keyDetails() {
             </Flex.Row>
 
             <Flex.Column style={{ width: "100%", marginTop: "2.4rem", gap: "1rem" }}>
-                {list.map(item => <HistoryItem {...item} />)}
+                {key?.historics?.map(item => <HistoryItem {...item} />)}
             </Flex.Column>
         </Body.Internal>
     );

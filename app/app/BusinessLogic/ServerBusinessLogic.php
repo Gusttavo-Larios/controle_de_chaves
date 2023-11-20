@@ -91,6 +91,14 @@ class ServerBusinessLogic
             ->toArray();
     }
 
+    public function getKey(int $key_id)
+    {
+        $key = Key::find($key_id);
+        $key->historics->load('server');
+        $key->key_status;
+        $key->historics;
+        return  $key;
+    }
 
     public function disableKey($room_name)
     {
