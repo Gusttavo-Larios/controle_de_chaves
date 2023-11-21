@@ -34,7 +34,7 @@ export function useAdmKey() {
     try {
       const response = await consultKeysUseCaseImpl.consult()
       setKeyList(response);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error)
       openAlert({
         is_dialog: false,
@@ -44,11 +44,11 @@ export function useAdmKey() {
     }
   }
 
-  async function enableKey(id: KeyEntity['id']): void {
+  async function enableKey(id: KeyEntity['id']): Promise<void> {
     try {
       enableKeyUseCaseImpl.enableKey(id)
       getKeys()
-    } catch (error) {
+    } catch (error: any) {
       console.error(error)
       openAlert({
         is_dialog: false,
@@ -58,11 +58,11 @@ export function useAdmKey() {
     }
   }
 
-  async function disableKey(id: KeyEntity['id']): void {
+  async function disableKey(id: KeyEntity['id']): Promise<void> {
     try {
       disableKeyUseCaseImpl.disableKey(id)
       getKeys()
-    } catch (error) {
+    } catch (error: any) {
       openAlert({
         is_dialog: false,
         message: error.message,

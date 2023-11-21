@@ -5,8 +5,10 @@ export type KeyEntity = {
     key_status_id: number;
     room_name: string;
     historics?: Array<HistoricEntity>;
-    key_status?: {
-        id: number;
-        status: "Disponível" | "Indisponível" | "Desativada";
-    }
+    key_status?: KeyStatusEntity
+}
+
+export type KeyStatusEntity = {
+    id: number;
+    status: "Disponível" | "Indisponível" | "Desativada";
 }
