@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react"
 import { SubmitHandler } from "react-hook-form";
 
+import { ServerEntity } from "app/core/entities/entity.server";
+
 import { ConsultServersUseCaseImpl } from "app/application/use_case_impl/use_case_impl.consult_servers"
 
-import { IConsultPublicAgentForm } from "./form_validator"
-
 import { useAlert } from "app/hooks/alert/hook.alert";
+
+import { IConsultPublicAgentForm } from "./form_validator"
+import { EnableServerUseCaseImpl } from "app/application/use_case_impl/use_case_impl.enable_server";
+import { DisableServerUseCaseImpl } from "app/application/use_case_impl/use_case_impl.disable_server";
 
 export function userAdmServer() {
     const { openAlert } = useAlert()
@@ -17,6 +21,35 @@ export function userAdmServer() {
     }, [])
 
     const consultServersUseCaseImpl = new ConsultServersUseCaseImpl()
+    const enableServerUseCaseImpl = new EnableServerUseCaseImpl();
+    const disableServerUseCaseImpl = new DisableServerUseCaseImpl();
+
+    async function enableServer(id: ServerEntity['id']): Promise<void> {
+        try {
+            await enableServerUseCaseImpl.enableServer(id)
+            getServer()
+        } catch (error: any) {
+            console.error(error)
+            openAlert({
+                is_dialog: false,
+                message: error.message,
+                title: "Ocorreu um erro"
+            })
+        }
+    }
+
+    async function disableServer(id: ServerEntity['id']): Promise<void> {
+        try {
+            await disableServerUseCaseImpl.disableServer(id)
+            getServer()
+        } catch (error: any) {
+            openAlert({
+                is_dialog: false,
+                message: error.message,
+                title: "Ocorreu um erro"
+            })
+        }
+    }
 
     const onSubmit: SubmitHandler<IConsultPublicAgentForm> = (data) => {
         getServer(data.server_name)
@@ -37,6 +70,8 @@ export function userAdmServer() {
 
     return {
         serversList,
-        onSubmit
+        onSubmit,
+        enableServer,
+        disableServer
     }
 }

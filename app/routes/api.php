@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/server/complete-register', [ServerController::class, 'completeRegister']);
@@ -23,7 +24,8 @@ Route::group([
     'prefix' => 'server'
 ], function () {
     Route::get('/', [ServerController::class, 'getServers']);
-    Route::post('/disable', [ServerController::class, 'disableRegister']);
+    Route::post('/enable', [ServerController::class, 'enableServer']);
+    Route::post('/disable', [ServerController::class, 'disableServer']);
     Route::post('/pre-registration', [ServerController::class, 'preRegistrationServer']);
 });
 

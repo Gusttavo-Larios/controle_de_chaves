@@ -24,22 +24,22 @@ class ServerController extends Controller
         }
     }
 
-    public function disableRegister(Request $request)
-    {
-        try {
-            $core = new ServerBusinessLogic();
+    // public function disableRegister(Request $request)
+    // {
+    //     try {
+    //         $core = new ServerBusinessLogic();
 
-            $res = $core->disableRegister($request->user()->id);
+    //         $res = $core->disableRegister($request->user()->id);
 
-            return response()->json($res);
-        } catch (\Throwable $th) {
-            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+    //         return response()->json($res);
+    //     } catch (\Throwable $th) {
+    //         $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
 
-            return response([
-                'message' => $th->getMessage()
-            ], $code);
-        }
-    }
+    //         return response([
+    //             'message' => $th->getMessage()
+    //         ], $code);
+    //     }
+    // }
 
     public function enableKey(Request $request)
     {
@@ -200,6 +200,40 @@ class ServerController extends Controller
             $core = new ServerBusinessLogic();
 
             $res = $core->getServers($request->query('server_name'));
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
+    public function enableServer(Request $request)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->enableServer($request->input('server_id'), $request->user()->id);
+
+            return response()->json($res);
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
+    public function disableServer(Request $request)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->disableServer($request->input('server_id'), $request->user()->id);
 
             return response()->json($res);
         } catch (\Throwable $th) {

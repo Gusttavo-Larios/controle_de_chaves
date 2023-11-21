@@ -13,7 +13,7 @@ import { Text } from 'app/components/Text';
 import { Title } from 'app/components/Title';
 import { Input } from 'app/components/Input';
 
-import { PublicAgentCard } from "./components/PublicAgentCard"
+import { ServerCard } from "./components/ServerCard"
 import { ButtonAddPublicAgent } from "./components/ButtonAddPublicAgent"
 
 import { ContainerCards, Results, Footer } from './styles';
@@ -25,7 +25,9 @@ import Plus from 'app/assets/plus.svg';
 function mainAdmServers() {
     const {
         serversList,
-        onSubmit
+        onSubmit,
+        enableServer,
+        disableServer
     } = userAdmServer()
 
     const {
@@ -67,7 +69,15 @@ function mainAdmServers() {
                 </Button> */}
             </div>
             <ContainerCards>
-                {serversList.map((item) => <PublicAgentCard key={item.id} {...item} />)}
+                {serversList.map((item) =>
+                    <ServerCard
+                        key={item.id}
+                        enableServer={enableServer}
+                        disableServer={disableServer}
+                        {...item}
+                    />
+                )
+                }
             </ContainerCards>
         </Body.Internal>
     );
