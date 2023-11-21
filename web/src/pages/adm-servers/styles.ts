@@ -8,12 +8,3 @@ export const ContainerCards = styled.div`
     align-items: flex-start;
     gap: 1rem;
 `;
-
-export const Footer = styled.footer`
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
-    width: 90%;    
-`;

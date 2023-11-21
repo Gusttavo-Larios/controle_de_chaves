@@ -11,6 +11,24 @@ export const Container = styled.div`
   position: relative;
 `;
 
+export const Content = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;  
+
+  position: relative;
+
+  @media (min-width: 1024px) {
+    width: 80%;
+  }
+
+  @media (min-width: 1366px) {
+    width: 50%;
+  }
+`;
+
 export const Header = styled.header`
     width: 100%;
     display: flex;
