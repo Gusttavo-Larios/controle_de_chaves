@@ -88,18 +88,17 @@ class ServerBusinessLogic
     {
         $server_role = Server::find($server_id)->role;
 
-        $query = DB::table('key')
-            ->join('key_status', 'key_status.id', '=', 'key.key_status_id')
-            ->where('room_name', 'like', "%$room_name%");
+        $query = Key::where('room_name', 'like', "%$room_name%");
 
         if ($server_role->role !== "Administrador") {
             $query->where('key_status.status', '<>', 'Desativada');
         }
 
-        return $query->select('key.*', 'key_status.status')
-            ->orderBy('room_name', 'asc')
-            ->get()
-            ->toArray();
+        $keys = $query->orderBy('room_name', 'asc')->get();
+
+        $keys->load('key_status');
+
+        return $keys;
     }
 
     public function getKey(int $key_id)
@@ -303,5 +302,16 @@ class ServerBusinessLogic
         return [
             'message' => 'Pré cadastro completo.'
         ];
+    }
+
+    public function getServers(string | null $server_name)
+    {
+        $servers = Server::where('name', 'like', "%$server_name%")
+            ->orderBy('name', 'asc')
+            ->get();
+
+        $servers->load('server_status');
+
+        return $servers;
     }
 }

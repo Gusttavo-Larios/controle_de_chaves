@@ -72,10 +72,10 @@ function main() {
               <Badge
                 type="button"
                 variant={
-                  item.status === "Disponível" ? "BLUE_300" : "YELLOW_400"
+                  item.key_status?.status === "Disponível" ? "BLUE_300" : "YELLOW_400"
                 }
               >
-                {item.status}
+                {item.key_status?.status}
               </Badge>
             </ResultLabel>
           </ResultBox>

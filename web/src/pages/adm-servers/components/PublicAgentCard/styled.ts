@@ -8,6 +8,7 @@ export const ResultBox = styled.div`
     flex-direction: column;
     justify-content: center;
 
+    box-sizing: border-box;
     padding: 1.6rem;
 
     background-color: #EDEDED;

@@ -1,4 +1,4 @@
-import { ServerEntity } from "app/core/entities/entity.public_agent.ts"
+import { ServerEntity } from "app/core/entities/entity.server.ts"
 
 import { Button } from 'app/components/Button';
 import { Text } from 'app/components/Text';
@@ -11,7 +11,7 @@ export function PublicAgentCard({ name, identification_number, email }: ServerEn
         <Text variant="TEXT_SMALL">Identificação: {identification_number}</Text>
         <Text variant="TEXT_SMALL">E-mail: {email}</Text>
         <Button type="submit" variant="RED_100" style={{
-            width: "100%",
+            // width: "100%",
             marginTop: "1rem"
         }}>
             Desativar servidor

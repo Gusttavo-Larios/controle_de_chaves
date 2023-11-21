@@ -22,6 +22,7 @@ Route::group([
     'middleware' => 'jwt.auth',
     'prefix' => 'server'
 ], function () {
+    Route::get('/', [ServerController::class, 'getServers']);
     Route::post('/disable', [ServerController::class, 'disableRegister']);
     Route::post('/pre-registration', [ServerController::class, 'preRegistrationServer']);
 });

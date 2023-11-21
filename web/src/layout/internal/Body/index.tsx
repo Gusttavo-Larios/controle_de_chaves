@@ -6,7 +6,7 @@ import { useMenu } from "app/hooks/menu/hook.menu";
 import { Menu } from "app/layout/internal/Menu"
 import { Title } from "app/components/Title";
 
-import { Container, Header } from "./styles";
+import { Container, Content, Header } from "./styles";
 
 import Logo from "app/assets/logo_small.svg";
 import MenuIcon from "app/assets/menu.svg";
@@ -37,7 +37,9 @@ function Internal({ children, title }: ICommonProps & IInternalProps): JSX.Eleme
             marginBottom: "3.6rem"
         }}>{title}</Title.H1>}
 
-        {children}
+        <Content>
+            {children}
+        </Content>
         <Menu />
     </Container>
 }
@@ -53,7 +55,9 @@ function External({ children }: ICommonProps): JSX.Element {
             </button>
         </Header>
 
-        {children}
+        <Content>
+            {children}
+        </Content>
     </Container>
 }
 

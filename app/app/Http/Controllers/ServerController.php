@@ -177,13 +177,31 @@ class ServerController extends Controller
         }
     }
 
-    public function preRegistrationServer(Request $request) {
+    public function preRegistrationServer(Request $request)
+    {
         try {
             $core = new ServerBusinessLogic();
 
             $res = $core->preRegistrationServer($request->file('file'), $request->user()->id);
 
             return $res;
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
+
+    public function getServers(Request $request)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->getServers($request->query('server_name'));
+
+            return response()->json($res);
         } catch (\Throwable $th) {
             $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
 
