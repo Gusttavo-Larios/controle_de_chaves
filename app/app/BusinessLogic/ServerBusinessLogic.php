@@ -303,4 +303,15 @@ class ServerBusinessLogic
             'message' => 'Pré cadastro completo.'
         ];
     }
+
+    public function getServers(string | null $server_name)
+    {
+        $servers = Server::where('name', 'like', "%$server_name%")
+            ->orderBy('name', 'asc')
+            ->get();
+
+        $servers->load('server_status');
+
+        return $servers;
+    }
 }

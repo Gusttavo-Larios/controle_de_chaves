@@ -1,9 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { IConsultPublicAgentForm, publicAgentFormRules } from "./form_validator"
+import { IConsultPublicAgentForm, admServerFormRules } from "./form_validator"
 
-import { usePublicAgent } from "./hook"
+import { userAdmServer } from "./hook"
 
 import { Body } from 'app/layout/internal/Body';
 
@@ -24,16 +24,16 @@ import Plus from 'app/assets/plus.svg';
 
 function mainAdmServers() {
     const {
-        publicAgentList,
+        serversList,
         onSubmit
-    } = usePublicAgent()
+    } = userAdmServer()
 
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<IConsultPublicAgentForm>({
-        resolver: zodResolver(publicAgentFormRules),
+        resolver: zodResolver(admServerFormRules),
     });
 
     return (
@@ -41,7 +41,7 @@ function mainAdmServers() {
             <Form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
                 <Form.Groups>
                     <Form.Group style={{ width: '100%' }}>
-                        <Input type="text" placeholder="Ex: Nome" style={{ width: '100%' }} {...register("name")} />
+                        <Input type="text" placeholder="Ex: Nome" style={{ width: '100%' }} {...register("server_name")} />
                     </Form.Group>
                 </Form.Groups>
                 <Button type="submit" style={{ marginTop: "1rem" }}>
@@ -67,7 +67,7 @@ function mainAdmServers() {
                 </Button> */}
             </div>
             <ContainerCards>
-                {publicAgentList.map((item) => <PublicAgentCard key={item.id} {...item} />)}
+                {serversList.map((item) => <PublicAgentCard key={item.id} {...item} />)}
             </ContainerCards>
         </Body.Internal>
     );

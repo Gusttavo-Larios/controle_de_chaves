@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-export const publicAgentFormRules = z.object({
-  name: z.string(),
+export const admServerFormRules = z.object({
+  server_name: z.string(),
 });
 
-export type IConsultPublicAgentForm = z.infer<typeof publicAgentFormRules>;
+export type IConsultPublicAgentForm = z.infer<typeof admServerFormRules>;
 
