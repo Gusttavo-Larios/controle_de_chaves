@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IConsultPublicAgentForm, admServerFormRules } from "./form_validator"
 
 import { userAdmServer } from "./hook"
+import { useUploadFileModal } from "app/hooks/upload_file_modal/hook.upload_file_modal"
 
 import { Body } from 'app/layout/internal/Body';
 
@@ -13,7 +14,7 @@ import { Text } from 'app/components/Text';
 import { Title } from 'app/components/Title';
 import { Input } from 'app/components/Input';
 
-import { PublicAgentCard } from "./components/PublicAgentCard"
+import { ServerCard } from "./components/ServerCard"
 import { ButtonAddPublicAgent } from "./components/ButtonAddPublicAgent"
 
 import { ContainerCards, Results, Footer } from './styles';
@@ -23,9 +24,13 @@ import Menu from 'app/assets/menu.svg';
 import Plus from 'app/assets/plus.svg';
 
 function mainAdmServers() {
+    const { openUploadFileModal } = useUploadFileModal()
     const {
         serversList,
-        onSubmit
+        onSubmit,
+        enableServer,
+        disableServer,
+        addServers
     } = userAdmServer()
 
     const {
@@ -61,13 +66,30 @@ function mainAdmServers() {
                 justifyContent: "space-between"
             }}>
                 <Title.H2>Servidores encontrados</Title.H2>
-                {/* <Button type="button" variant="GREEN_400">
+                <Button type="button" variant="GREEN_400"
+                    onClick={() => {
+                        openUploadFileModal({
+                            title: "Novo(a)s servidores",
+                            actions: {
+                                confirm: addServers
+                            }
+                        })
+                    }}
+                >
                     Adicionar Servidor
                     <img src={Plus} alt="Ícone de somar." />
-                </Button> */}
+                </Button>
             </div>
             <ContainerCards>
-                {serversList.map((item) => <PublicAgentCard key={item.id} {...item} />)}
+                {serversList.map((item) =>
+                    <ServerCard
+                        key={item.id}
+                        enableServer={enableServer}
+                        disableServer={disableServer}
+                        {...item}
+                    />
+                )
+                }
             </ContainerCards>
         </Body.Internal>
     );
