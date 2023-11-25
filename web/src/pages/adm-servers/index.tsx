@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IConsultPublicAgentForm, admServerFormRules } from "./form_validator"
 
 import { userAdmServer } from "./hook"
+import { useUploadFileModal } from "app/hooks/upload_file_modal/hook.upload_file_modal"
 
 import { Body } from 'app/layout/internal/Body';
 
@@ -23,11 +24,13 @@ import Menu from 'app/assets/menu.svg';
 import Plus from 'app/assets/plus.svg';
 
 function mainAdmServers() {
+    const { openUploadFileModal } = useUploadFileModal()
     const {
         serversList,
         onSubmit,
         enableServer,
-        disableServer
+        disableServer,
+        addServers
     } = userAdmServer()
 
     const {
@@ -63,10 +66,19 @@ function mainAdmServers() {
                 justifyContent: "space-between"
             }}>
                 <Title.H2>Servidores encontrados</Title.H2>
-                {/* <Button type="button" variant="GREEN_400">
+                <Button type="button" variant="GREEN_400"
+                    onClick={() => {
+                        openUploadFileModal({
+                            title: "Novo(a)s servidores",
+                            actions: {
+                                confirm: addServers
+                            }
+                        })
+                    }}
+                >
                     Adicionar Servidor
                     <img src={Plus} alt="Ícone de somar." />
-                </Button> */}
+                </Button>
             </div>
             <ContainerCards>
                 {serversList.map((item) =>

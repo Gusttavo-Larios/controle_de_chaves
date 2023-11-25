@@ -10,6 +10,7 @@ import { useAlert } from "app/hooks/alert/hook.alert";
 import { IConsultPublicAgentForm } from "./form_validator"
 import { EnableServerUseCaseImpl } from "app/application/use_case_impl/use_case_impl.enable_server";
 import { DisableServerUseCaseImpl } from "app/application/use_case_impl/use_case_impl.disable_server";
+import { PreRegistrerServerUseCaseImpl } from "app/application/use_case_impl/use_case_impl.pre_registrer_server";
 
 export function userAdmServer() {
     const { openAlert } = useAlert()
@@ -23,6 +24,7 @@ export function userAdmServer() {
     const consultServersUseCaseImpl = new ConsultServersUseCaseImpl()
     const enableServerUseCaseImpl = new EnableServerUseCaseImpl();
     const disableServerUseCaseImpl = new DisableServerUseCaseImpl();
+    const preRegistrerServerUseCaseImpl = new PreRegistrerServerUseCaseImpl();
 
     async function enableServer(id: ServerEntity['id']): Promise<void> {
         try {
@@ -68,10 +70,24 @@ export function userAdmServer() {
         }
     }
 
+    async function addServers(worksheet: File) {
+        try {
+            await preRegistrerServerUseCaseImpl.send(worksheet)
+            getServer()
+        } catch (error: any) {
+            openAlert({
+                is_dialog: false,
+                message: error.message,
+                title: "Ocorreu um erro"
+            })
+        }
+    }
+
     return {
         serversList,
         onSubmit,
         enableServer,
-        disableServer
+        disableServer,
+        addServers
     }
 }

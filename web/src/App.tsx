@@ -6,8 +6,10 @@ import { theme } from "app/styles/theme";
 
 import { AlertContextProvider } from "./contexts/modal/context.modal";
 import { MenuContextProvider } from "./contexts/menu/context.menu";
+import { UploadFileModalContextProvider } from "app/contexts/upload_file_modal/context.upload_file_modal";
 
 import { Alert } from "./components/Alert";
+import { UploadFileModal } from "app/layout/internal/UploadFileModal";
 
 import "./styles/styles.css";
 
@@ -16,8 +18,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <MenuContextProvider>
         <AlertContextProvider>
-          <RouterProvider router={router} />
-          <Alert />
+          <UploadFileModalContextProvider>
+            <RouterProvider router={router} />
+            <Alert />
+            <UploadFileModal />
+          </UploadFileModalContextProvider>
         </AlertContextProvider>
       </MenuContextProvider>
     </ThemeProvider>
