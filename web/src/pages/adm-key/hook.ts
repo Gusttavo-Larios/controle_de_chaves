@@ -12,6 +12,7 @@ import {
 import {
   DisableKeyUseCaseImpl
 } from "app/application/use_case_impl/use_case_impl.disable_key";
+import { PreRegistrerKeyUseCaseImpl } from "app/application/use_case_impl/use_case_impl.pre_registrer_key";
 
 import { IConsultKeysForm } from "./form_validator";
 
@@ -25,6 +26,7 @@ export function useAdmKey() {
   const consultKeysUseCaseImpl = new ConsultKeysUseCaseImpl();
   const enableKeyUseCaseImpl = new EnableKeyUseCaseImpl();
   const disableKeyUseCaseImpl = new DisableKeyUseCaseImpl();
+  const preRegistrerKeyUseCaseImpl = new PreRegistrerKeyUseCaseImpl();
 
   useEffect(() => {
     getKeys()
@@ -77,10 +79,24 @@ export function useAdmKey() {
     });
   }
 
+  async function addKeys(worksheet: File) {
+    try {
+      await preRegistrerKeyUseCaseImpl.send(worksheet)
+      getKeys()
+    } catch (error: any) {
+      openAlert({
+        is_dialog: false,
+        message: error.message,
+        title: "Ocorreu um erro"
+      })
+    }
+  }
+
   return {
     keyList,
     enableKey,
     disableKey,
     onSubmit,
+    addKeys
   };
 }

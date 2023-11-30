@@ -25,6 +25,7 @@ export function UploadFileModal() {
 
     function confirm(): void {
         data.actions?.confirm(file as File)
+        setFile(null)
         closeUploadFileModal()
     }
 

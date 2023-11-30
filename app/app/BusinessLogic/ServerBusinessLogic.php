@@ -361,4 +361,37 @@ class ServerBusinessLogic
             'message' => 'Cadastro desativado.'
         ];
     }
+
+    function preRegistrationKey(UploadedFile $file, int $server_id)
+    {
+        $server = Server::find($server_id);
+
+        if ($server->role->role !== 'Administrador') {
+            throw new Error('Você não tem permissão para adicionar novas chaves.', 401);
+        }
+
+        /* LER XLSX */
+        $fileName = 'profile-' . time() . '.' . $file->getClientOriginalExtension();
+        $file = $file->storeAs($fileName);
+
+        $spreadsheet = IOFactory::load("../storage/app/$fileName");
+        $data = $spreadsheet->getActiveSheet()->toArray();
+
+        DB::beginTransaction();
+        for ($i = 1; $i < count($data); $i++) {
+            $key = $data[$i];
+
+            DB::table('key')->insertOrIgnore([
+                'room_name' => $key[0],
+                'key_status_id' => 1,
+            ]);
+        }
+        DB::commit();
+
+        Storage::delete($fileName);
+
+        return [
+            'message' => 'Pré cadastro completo.'
+        ];
+    }
 }

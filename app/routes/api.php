@@ -40,5 +40,6 @@ Route::group([
     Route::post('/use', [ServerController::class, 'useKey']);
     Route::post('/return', [ServerController::class, 'returnKey']);
     Route::get('/historic/download', [ServerController::class, 'downloadKeyWithdrawalHistory']);
+    Route::post('/pre-registration', [ServerController::class, 'preRegistrationKey']);
     // Route::get('/historic/{id}', [ServerController::class, 'historicKey']);
 });

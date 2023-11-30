@@ -24,7 +24,6 @@ use Illuminate\Database\Eloquent\Model;
 class Key extends Model
 {
 	protected $table = 'key';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
