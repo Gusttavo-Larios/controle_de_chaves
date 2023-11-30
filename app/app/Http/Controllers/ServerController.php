@@ -244,4 +244,21 @@ class ServerController extends Controller
             ], $code);
         }
     }
+
+    public function preRegistrationKey(Request $request)
+    {
+        try {
+            $core = new ServerBusinessLogic();
+
+            $res = $core->preRegistrationKey($request->file('file'), $request->user()->id);
+
+            return $res;
+        } catch (\Throwable $th) {
+            $code = $th->getCode() > 399 && $th->getCode() < 500 ? $th->getCode() : 500;
+
+            return response([
+                'message' => $th->getMessage()
+            ], $code);
+        }
+    }
 }

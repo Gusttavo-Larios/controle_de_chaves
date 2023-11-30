@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KeyController;
 use App\Http\Controllers\ServerController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,12 +34,12 @@ Route::group([
     'middleware' => 'jwt.auth',
     'prefix' => 'key'
 ], function () {
-    Route::get('/', [ServerController::class, 'getKeys']);
-    Route::get('/{id}', [ServerController::class, 'getKey']);
-    Route::post('/enable', [ServerController::class, 'enableKey']);
-    Route::post('/disable', [ServerController::class, 'disableKey']);
-    Route::post('/use', [ServerController::class, 'useKey']);
-    Route::post('/return', [ServerController::class, 'returnKey']);
-    Route::get('/historic/download', [ServerController::class, 'downloadKeyWithdrawalHistory']);
-    // Route::get('/historic/{id}', [ServerController::class, 'historicKey']);
+    Route::get('/', [KeyController::class, 'getKeys']);
+    Route::get('/{id}', [KeyController::class, 'getKey']);
+    Route::post('/enable', [KeyController::class, 'enableKey']);
+    Route::post('/disable', [KeyController::class, 'disableKey']);
+    Route::post('/use', [KeyController::class, 'useKey']);
+    Route::post('/return', [KeyController::class, 'returnKey']);
+    Route::get('/historic/download', [KeyController::class, 'downloadKeyWithdrawalHistory']);
+    Route::post('/pre-registration', [KeyController::class, 'preRegistrationKey']);
 });
