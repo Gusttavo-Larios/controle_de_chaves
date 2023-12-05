@@ -1,0 +1,5 @@
+.env.example
+./vendor
+.gitignore
+.gitattributes
+README.md
